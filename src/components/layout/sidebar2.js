@@ -6,7 +6,7 @@ function Sidebar2() {
         <div className="offcanvas offcanvas-start w-260" data-bs-scroll="true" tabIndex="-1" id="offcanvasPrimaryMenu">
             <div className="offcanvas-header border-bottom h-70">
                 <img src="./assets/images/logo1.png" width="160" alt="" />
-                <a href="javascript:;" className="primaery-menu-close" data-bs-dismiss="offcanvas">
+                <a href="#" className="primaery-menu-close" data-bs-dismiss="offcanvas">
                     <i className="material-icons-outlined">close</i>
                 </a>
             </div>
@@ -14,7 +14,7 @@ function Sidebar2() {
                 <nav className="sidebar-nav mm-active">
                     <ul className="metismenu mm-show" id="sidenav">
                         <li className="mm-active">
-                            <a href="javascript:;" className="has-arrow">
+                            <a href="#" className="has-arrow">
                                 <div className="parent-icon"><i className="material-icons-outlined">home</i>
                                 </div>
                                 <div className="menu-title">Dashboard</div>
@@ -28,7 +28,7 @@ function Sidebar2() {
                             </ul>
                         </li>
                         <li>
-                            <a href="javascript:;" className="has-arrow">
+                            <a href="#" className="has-arrow">
                                 <div className="parent-icon"><i className="material-icons-outlined">widgets</i>
                                 </div>
                                 <div className="menu-title">Widgets</div>
@@ -43,7 +43,7 @@ function Sidebar2() {
                         </li>
                         <li className="menu-label">UI Elements</li>
                         <li>
-                            <a href="javascript:;" className="has-arrow">
+                            <a href="#" className="has-arrow">
                                 <div className="parent-icon"><i className="material-icons-outlined">inventory_2</i>
                                 </div>
                                 <div className="menu-title">Cards</div>
@@ -62,7 +62,7 @@ function Sidebar2() {
                         </li>
 
                         <li>
-                            <a href="javascript:;" className="has-arrow">
+                            <a href="#" className="has-arrow">
                                 <div className="parent-icon"><i className="material-icons-outlined">shopping_bag</i>
                                 </div>
                                 <div className="menu-title">eCommerce</div>
@@ -89,7 +89,7 @@ function Sidebar2() {
                             </ul>
                         </li>
                         <li>
-                            <a className="has-arrow" href="javascript:;">
+                            <a className="has-arrow" href="#">
                                 <div className="parent-icon"><i className="material-icons-outlined">card_giftcard</i>
                                 </div>
                                 <div className="menu-title">Components</div>
@@ -152,7 +152,7 @@ function Sidebar2() {
                             </ul>
                         </li>
                         <li>
-                            <a className="has-arrow" href="javascript:;">
+                            <a className="has-arrow" href="#">
                                 <div className="parent-icon"><i className="material-icons-outlined">view_agenda</i>
                                 </div>
                                 <div className="menu-title">Icons</div>
@@ -172,7 +172,7 @@ function Sidebar2() {
                         </li>
                         <li className="menu-label">Forms &amp; Tables</li>
                         <li>
-                            <a className="has-arrow" href="javascript:;">
+                            <a className="has-arrow" href="#">
                                 <div className="parent-icon"><i className="material-icons-outlined">toc</i>
                                 </div>
                                 <div className="menu-title">Forms</div>
@@ -213,7 +213,7 @@ function Sidebar2() {
                             </ul>
                         </li>
                         <li>
-                            <a className="has-arrow" href="javascript:;">
+                            <a className="has-arrow" href="#">
                                 <div className="parent-icon"><i className="material-icons-outlined">api</i>
                                 </div>
                                 <div className="menu-title">Tables</div>
@@ -228,7 +228,7 @@ function Sidebar2() {
                             </ul>
                         </li>
                         <li>
-                            <a className="has-arrow" href="javascript:;">
+                            <a className="has-arrow" href="#">
                                 <div className="parent-icon"><i className="material-icons-outlined">apps</i>
                                 </div>
                                 <div className="menu-title">Apps</div>
@@ -245,13 +245,13 @@ function Sidebar2() {
                         </li>
                         <li className="menu-label">Pages</li>
                         <li>
-                            <a className="has-arrow" href="javascript:;">
+                            <a className="has-arrow" href="#">
                                 <div className="parent-icon"><i className="material-icons-outlined">lock</i>
                                 </div>
                                 <div className="menu-title">Authentication</div>
                             </a>
                             <ul className="mm-collapse">
-                                <li><a className="has-arrow" href="javascript:;"><i
+                                <li><a className="has-arrow" href="#"><i
                                     className="material-icons-outlined">arrow_right</i>Basic</a>
                                     <ul className="mm-collapse">
                                         <li><a href="auth-basic-login.html" target="_blank"><i
@@ -264,7 +264,7 @@ function Sidebar2() {
                                             className="material-icons-outlined">arrow_right</i>Reset Password</a></li>
                                     </ul>
                                 </li>
-                                <li><a className="has-arrow" href="javascript:;"><i
+                                <li><a className="has-arrow" href="#"><i
                                     className="material-icons-outlined">arrow_right</i>Cover</a>
                                     <ul className="mm-collapse">
                                         <li><a href="auth-cover-login.html" target="_blank"><i
@@ -277,7 +277,7 @@ function Sidebar2() {
                                             className="material-icons-outlined">arrow_right</i>Reset Password</a></li>
                                     </ul>
                                 </li>
-                                <li><a className="has-arrow" href="javascript:;"><i
+                                <li><a className="has-arrow" href="#"><i
                                     className="material-icons-outlined">arrow_right</i>Boxed</a>
                                     <ul className="mm-collapse">
                                         <li><a href="auth-boxed-login.html" target="_blank"><i
@@ -307,7 +307,7 @@ function Sidebar2() {
                             </a>
                         </li>
                         <li>
-                            <a className="has-arrow" href="javascript:;">
+                            <a className="has-arrow" href="#">
                                 <div className="parent-icon"><i className="material-icons-outlined">report_problem</i>
                                 </div>
                                 <div className="menu-title">Pages</div>
@@ -345,7 +345,7 @@ function Sidebar2() {
                         </li>
                         <li className="menu-label">Charts &amp; Maps</li>
                         <li>
-                            <a className="has-arrow" href="javascript:;">
+                            <a className="has-arrow" href="#">
                                 <div className="parent-icon"><i className="material-icons-outlined">fitbit</i>
                                 </div>
                                 <div className="menu-title">Charts</div>
@@ -360,7 +360,7 @@ function Sidebar2() {
                             </ul>
                         </li>
                         <li>
-                            <a className="has-arrow" href="javascript:;">
+                            <a className="has-arrow" href="#">
                                 <div className="parent-icon"><i className="material-icons-outlined">sports_football</i>
                                 </div>
                                 <div className="menu-title">Maps</div>
@@ -376,21 +376,21 @@ function Sidebar2() {
                         </li>
                         <li className="menu-label">Others</li>
                         <li>
-                            <a className="has-arrow" href="javascript:;">
+                            <a className="has-arrow" href="#">
                                 <div className="parent-icon"><i className="material-icons-outlined">face_5</i>
                                 </div>
                                 <div className="menu-title">Menu Levels</div>
                             </a>
                             <ul className="mm-collapse">
-                                <li><a className="has-arrow" href="javascript:;"><i
+                                <li><a className="has-arrow" href="#"><i
                                     className="material-icons-outlined">arrow_right</i>Level
                                     One</a>
                                     <ul className="mm-collapse">
-                                        <li><a className="has-arrow" href="javascript:;"><i
+                                        <li><a className="has-arrow" href="#"><i
                                             className="material-icons-outlined">arrow_right</i>Level
                                             Two</a>
                                             <ul className="mm-collapse">
-                                                <li><a href="javascript:;"><i
+                                                <li><a href="#"><i
                                                     className="material-icons-outlined">arrow_right</i>Level Three</a>
                                                 </li>
                                             </ul>

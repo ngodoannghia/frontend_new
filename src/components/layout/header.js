@@ -33,19 +33,19 @@ function Header() {
                                 <div className="card-body search-content ps">
                                     <p className="search-title">Recent Searches</p>
                                     <div className="d-flex align-items-start flex-wrap gap-2 kewords-wrapper">
-                                        <a href="javascript:;" className="kewords"><span>Angular Template</span><i
+                                        <a href="#" className="kewords"><span>Angular Template</span><i
                                             className="material-icons-outlined fs-6">search</i></a>
-                                        <a href="javascript:;" className="kewords"><span>Dashboard</span><i
+                                        <a href="#" className="kewords"><span>Dashboard</span><i
                                             className="material-icons-outlined fs-6">search</i></a>
-                                        <a href="javascript:;" className="kewords"><span>Admin Template</span><i
+                                        <a href="#" className="kewords"><span>Admin Template</span><i
                                             className="material-icons-outlined fs-6">search</i></a>
-                                        <a href="javascript:;" className="kewords"><span>Bootstrap 5 Admin</span><i
+                                        <a href="#" className="kewords"><span>Bootstrap 5 Admin</span><i
                                             className="material-icons-outlined fs-6">search</i></a>
-                                        <a href="javascript:;" className="kewords"><span>Html eCommerce</span><i
+                                        <a href="#" className="kewords"><span>Html eCommerce</span><i
                                             className="material-icons-outlined fs-6">search</i></a>
-                                        <a href="javascript:;" className="kewords"><span>Sass</span><i
+                                        <a href="#" className="kewords"><span>Sass</span><i
                                             className="material-icons-outlined fs-6">search</i></a>
-                                        <a href="javascript:;" className="kewords"><span>laravel 9</span><i
+                                        <a href="#" className="kewords"><span>laravel 9</span><i
                                             className="material-icons-outlined fs-6">search</i></a>
                                     </div>
                                     <hr />
@@ -120,7 +120,7 @@ function Header() {
                                     </div>
 
                                     <div className="card-footer text-center bg-transparent">
-                                        <a href="javascript:;" className="btn w-100">See All Search Results</a>
+                                        <a href="#" className="btn w-100">See All Search Results</a>
                                     </div>
                                 </div>
                             </div>
@@ -129,41 +129,41 @@ function Header() {
                 </div>
                 <ul className="navbar-nav gap-1 nav-right-links align-items-center">
                     <li className="nav-item d-lg-none mobile-search-btn">
-                        <a className="nav-link" href="javascript:;"><i className="material-icons-outlined">search</i></a>
+                        <a className="nav-link" href="#"><i className="material-icons-outlined">search</i></a>
                     </li>
                     <li className="nav-item dropdown dropdown-laungauge">
                         <a className="nav-link dropdown-toggle dropdown-toggle-nocaret" href="avascript:;"
                             data-bs-toggle="dropdown"><img src="./assets/images/county/02.png" width="22" alt="" />
                         </a>
                         <ul className="dropdown-menu dropdown-menu-end">
-                            <li><a className="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img
+                            <li><a className="dropdown-item d-flex align-items-center py-2" href="#"><img
                                 src="./assets/images/county/01.png" width="20" alt="" /><span
                                     className="ms-2">English</span></a>
                             </li>
-                            <li><a className="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img
+                            <li><a className="dropdown-item d-flex align-items-center py-2" href="#"><img
                                 src="./assets/images/county/02.png" width="20" alt="" /><span className="ms-2">Catalan</span></a>
                             </li>
-                            <li><a className="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img
+                            <li><a className="dropdown-item d-flex align-items-center py-2" href="#"><img
                                 src="./assets/images/county/03.png" width="20" alt="" /><span
                                     className="ms-2">French</span></a>
                             </li>
-                            <li><a className="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img
+                            <li><a className="dropdown-item d-flex align-items-center py-2" href="#"><img
                                 src="./assets/images/county/04.png" width="20" alt="" /><span
                                     className="ms-2">Belize</span></a>
                             </li>
-                            <li><a className="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img
+                            <li><a className="dropdown-item d-flex align-items-center py-2" href="#"><img
                                 src="./assets/images/county/05.png" width="20" alt="" /><span
                                     className="ms-2">Colombia</span></a>
                             </li>
-                            <li><a className="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img
+                            <li><a className="dropdown-item d-flex align-items-center py-2" href="#"><img
                                 src="./assets/images/county/06.png" width="20" alt="" /><span
                                     className="ms-2">Spanish</span></a>
                             </li>
-                            <li><a className="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img
+                            <li><a className="dropdown-item d-flex align-items-center py-2" href="#"><img
                                 src="./assets/images/county/07.png" width="20" alt="" /><span
                                     className="ms-2">Georgian</span></a>
                             </li>
-                            <li><a className="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img
+                            <li><a className="dropdown-item d-flex align-items-center py-2" href="#"><img
                                 src="./assets/images/county/08.png" width="20" alt="" /><span
                                     className="ms-2">Hindi</span></a>
                             </li>
@@ -171,7 +171,7 @@ function Header() {
                     </li>
                     <li className="nav-item dropdown position-static">
                         <a className="nav-link dropdown-toggle dropdown-toggle-nocaret" data-bs-auto-close="outside"
-                            data-bs-toggle="dropdown" href="javascript:;"><i
+                            data-bs-toggle="dropdown" href="#"><i
                                 className="material-icons-outlined">done_all</i></a>
                         <div className="dropdown-menu dropdown-menu-end mega-menu shadow-lg p-4 p-lg-5">
                             <div className="mega-menu-widgets">
@@ -317,7 +317,7 @@ function Header() {
                     </li>
                     <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle dropdown-toggle-nocaret" data-bs-auto-close="outside"
-                            data-bs-toggle="dropdown" href="javascript:;"><i className="material-icons-outlined">apps</i></a>
+                            data-bs-toggle="dropdown" href="#"><i className="material-icons-outlined">apps</i></a>
                         <div className="dropdown-menu dropdown-menu-end dropdown-apps shadow-lg p-3">
                             <div className="border rounded-4 overflow-hidden">
                                 <div className="row row-cols-3 g-0 border-bottom">
@@ -455,7 +455,7 @@ function Header() {
                     </li>
                     <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative"
-                            data-bs-auto-close="outside" data-bs-toggle="dropdown" href="javascript:;"><i
+                            data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#"><i
                                 className="material-icons-outlined">notifications</i>
                             <span className="badge-notify">5</span>
                         </a>
@@ -471,31 +471,31 @@ function Header() {
                                     </button>
                                     <div className="dropdown-menu dropdown-option dropdown-menu-end shadow">
                                         <div><a className="dropdown-item d-flex align-items-center gap-2 py-2"
-                                            href="javascript:;"><i
+                                            href="#"><i
                                                 className="material-icons-outlined fs-6">inventory_2</i>Archive All</a>
                                         </div>
                                         <div><a className="dropdown-item d-flex align-items-center gap-2 py-2"
-                                            href="javascript:;"><i className="material-icons-outlined fs-6">done_all</i>Mark
+                                            href="#"><i className="material-icons-outlined fs-6">done_all</i>Mark
                                             all as read</a></div>
                                         <div><a className="dropdown-item d-flex align-items-center gap-2 py-2"
-                                            href="javascript:;"><i
+                                            href="#"><i
                                                 className="material-icons-outlined fs-6">mic_off</i>Disable
                                             Notifications</a></div>
                                         <div><a className="dropdown-item d-flex align-items-center gap-2 py-2"
-                                            href="javascript:;"><i className="material-icons-outlined fs-6">grade</i>What's
+                                            href="#"><i className="material-icons-outlined fs-6">grade</i>What's
                                             new ?</a></div>
                                         <div>
                                             <hr className="dropdown-divider" />
                                         </div>
                                         <div><a className="dropdown-item d-flex align-items-center gap-2 py-2"
-                                            href="javascript:;"><i
+                                            href="#"><i
                                                 className="material-icons-outlined fs-6">leaderboard</i>Reports</a></div>
                                     </div>
                                 </div>
                             </div>
                             <div className="notify-list ps">
                                 <div>
-                                    <a className="dropdown-item border-bottom py-2" href="javascript:;">
+                                    <a className="dropdown-item border-bottom py-2" href="#">
                                         <div className="d-flex align-items-center gap-3">
                                             <div className="">
                                                 <img src="https://placehold.co/110x110" className="rounded-circle" width="45"
@@ -513,7 +513,7 @@ function Header() {
                                     </a>
                                 </div>
                                 <div>
-                                    <a className="dropdown-item border-bottom py-2" href="javascript:;">
+                                    <a className="dropdown-item border-bottom py-2" href="#">
                                         <div className="d-flex align-items-center gap-3">
                                             <div className="user-wrapper bg-primary text-primary bg-opacity-10">
                                                 <span>RS</span>
@@ -530,7 +530,7 @@ function Header() {
                                     </a>
                                 </div>
                                 <div>
-                                    <a className="dropdown-item border-bottom py-2" href="javascript:;">
+                                    <a className="dropdown-item border-bottom py-2" href="#">
                                         <div className="d-flex align-items-center gap-3">
                                             <div className="">
                                                 <img src="./assets/images/apps/13.png" className="rounded-circle" width="45"
@@ -548,7 +548,7 @@ function Header() {
                                     </a>
                                 </div>
                                 <div>
-                                    <a className="dropdown-item border-bottom py-2" href="javascript:;">
+                                    <a className="dropdown-item border-bottom py-2" href="#">
                                         <div className="d-flex align-items-center gap-3">
                                             <div className="">
                                                 <img src="./assets/images/apps/14.png" className="rounded-circle" width="45"
@@ -566,7 +566,7 @@ function Header() {
                                     </a>
                                 </div>
                                 <div>
-                                    <a className="dropdown-item border-bottom py-2" href="javascript:;">
+                                    <a className="dropdown-item border-bottom py-2" href="#">
                                         <div className="d-flex align-items-center gap-3">
                                             <div className="">
                                                 <img src="https://placehold.co/110x110" className="rounded-circle" width="45"
@@ -584,7 +584,7 @@ function Header() {
                                     </a>
                                 </div>
                                 <div>
-                                    <a className="dropdown-item py-2" href="javascript:;">
+                                    <a className="dropdown-item py-2" href="#">
                                         <div className="d-flex align-items-center gap-3">
                                             <div className="user-wrapper bg-danger text-danger bg-opacity-10">
                                                 <span>PK</span>

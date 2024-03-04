@@ -3,11 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import "./sass/main.css"
-import "./sass/dark-theme.css"
-import "./sass/responsive.css"
-import "./sass/bordered-theme.css"
-import "./sass/semi-dark.css"
 
 
 ReactDOM.render(

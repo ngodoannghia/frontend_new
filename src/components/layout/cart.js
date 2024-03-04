@@ -7,7 +7,7 @@ function Cart() {
         <div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasCart">
             <div className="offcanvas-header border-bottom h-70">
                 <h5 className="mb-0" id="offcanvasRightLabel">8 New Orders</h5>
-                <a href="javascript:;" className="primaery-menu-close" data-bs-dismiss="offcanvas">
+                <a href="#" className="primaery-menu-close" data-bs-dismiss="offcanvas">
                     <i className="material-icons-outlined">close</i>
                 </a>
             </div>

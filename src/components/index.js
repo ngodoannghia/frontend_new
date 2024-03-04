@@ -15,26 +15,29 @@ function App() {
 
   return (
     isAuthen ?
-    <>
-      <Header />
-      <Aside />
-      <main className="main-wrapper">
-        {
-          routers.map((m) => {
-            let Component = m.component;
-            return <Component exact path={m.path}></Component>
-          })
-        }
-      </main>
-      <Cart/>
-      <Sidebar2 />
-      <Sidebar />
-      <button className="btn btn-primary position-fixed bottom-0 end-0 m-3 d-flex align-items-center gap-2" type="button"
-        data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop">
-        <i className="material-icons-outlined">tune</i>Customize
-      </button>
-      <Customize />
-    </> :<Redirect to="/login" />
+      <>
+        <Header />
+        <Aside />
+        <main className="main-wrapper">
+          {
+            routers.map((m) => {
+              let Component = m.component;
+              if (Component){
+                return <Component exact path={m.path}></Component>
+              }
+              return "Error render main-content";
+            })
+          }
+        </main>
+        <Cart/>
+        <Sidebar2 />
+        <Sidebar />
+        <button className="btn btn-primary position-fixed bottom-0 end-0 m-3 d-flex align-items-center gap-2" type="button"
+          data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop">
+          <i className="material-icons-outlined">tune</i>Customize
+        </button>
+        <Customize />
+      </> : <Redirect to="/login" />
   );
 }
 

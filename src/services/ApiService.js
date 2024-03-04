@@ -23,22 +23,12 @@ function setToken (token){
 
 }
 
-function setCookie (name, token){
-    authToken = name + "=" + token
-    localStorage.setItem("cookie", authToken);
-}
-
 function isAuthen(){
     return authToken !== null
 }
 
 function clearData(){
     localStorage.removeItem("token");
-    localStorage.removeItem("userInfo");
-}
-
-function clearData2(){
-    localStorage.removeItem("cookie");
     localStorage.removeItem("userInfo");
 }
 
@@ -56,15 +46,6 @@ function getHeader(more = {}){
 function getHeader2(more = {}){
     return  {...more,token:authToken};  
 }
-
-function getHeader_cookie(more = {}){
-    return  {"Content-Type":"application/json",...more,Cookie:authToken};  
-}
-
-function getHeader_cookie2(more = {}){
-    return  {...more,Cookie:authToken};  
-}
-
 function requestGetMusic(id){
     var url = HOST+"music/detail/"+id;
     return fetch(url, { 
@@ -78,17 +59,7 @@ function requestGetMusic(id){
     });
 }
 
-function getMusic(id){
-    var url = HOST + "api/song/" + id;
-    return fetch(url, {
-        headers: getHeader_cookie()
-    }).then(res => res.json()).then(json =>{
-        if (json.code !== 200){
-            throw new Error("Request Failed")
-        }
-        return json.data;
-    })
-}
+
 
 function getOriginMusic(id){
     var url = HOST+"music/detailbydemo/"+id;
@@ -209,31 +180,6 @@ function requestLogin(username,password){
         setToken(json.data.jwttoken);
         json.data.user.timestamp = (new Date()).getTime()
         setUserInfo(json.data.user);
-        return json.data;
-    });
-}
-
-function loginAdmin(username, password) {
-    var url = HOST + "api/admin/login";
-    console.log("url: ", url)
-    console.log("host: ", HOST)
-    return fetch(url, {
-        method: 'POST',
-        mode: 'cors',
-        body: JSON.stringify({
-            username: username,
-            password: password
-        }),
-        headers: getHeader_cookie()
-    }).then(res => res.json()).then(json => {
-        console.log("data" + json.token)
-        if (json.code !== 200) {
-            throw new Error("Login failed");
-        }
-        setCookie(json.name, json.token);
-        json.data.user.timestamp = (new Date()).getTime();
-        setUserInfo(json.data.user);
-
         return json.data;
     });
 }
@@ -401,8 +347,6 @@ function requestListAdmin(){
     });
 }
 
-
-
 function requestAddAdmin(admin){ 
    
     var url = HOST+"admin/add";
@@ -466,9 +410,6 @@ function requestReportDashboard(){
         return json.data;
     });
 }
-
-
-
 
 function requestDeleteMusic(music){ 
    
@@ -707,10 +648,6 @@ function requestStoreMusic(filter){
     });
 }
 
-
-
-
-
 function removeUserStorage(uuid,useruuid){ 
     
     var url = HOST+"admin/userstorage/remove/"+uuid+"/"+useruuid;
@@ -876,9 +813,9 @@ function nameToSlug(str) {
       .replace(/-+/g, "_"); // collapse dashes
   
     return str;
-  }
+}
 
-  function displayTime(time){
+function displayTime(time){
     if (time == null){
         return "N/a"
     }
@@ -891,8 +828,8 @@ function nameToSlug(str) {
     var sec = a.getSeconds();
     var time =  hour + ':' + min  ;
     return time;
-  }
-  function displayDateTime(time){
+}
+function displayDateTime(time){
     if (time == null){
         return "N/a"
     }
@@ -905,8 +842,8 @@ function nameToSlug(str) {
     var sec = a.getSeconds();
     var time = date + '/' + month + '/' + year + '-' + hour + ':' + min + ':' + sec ;
     return time;
-  }
-  function displayDate(time){
+}
+function displayDate(time){
     if (time == null){
         return "N/a"
     }
@@ -919,20 +856,97 @@ function nameToSlug(str) {
     var sec = a.getSeconds();
     var time = date + '/' + month + '/' + year  ;
     return time;
-  }
-  function displayTitle(model){
-      if (model.title !== null && model.title !== ""){
-          return model.title
-      }
-      if (model.details == null){
-          return "";
-      }
-      let listName = []
-      for (var k of model.details){
-        listName.push(k.title)
-      }
-      return listName.join(",")
-  }
+}
+function displayTitle(model){
+    if (model.title !== null && model.title !== ""){
+        return model.title
+    }
+    if (model.details == null){
+        return "";
+    }
+    let listName = []
+    for (var k of model.details){
+    listName.push(k.title)
+    }
+    return listName.join(",")
+}
+
+function getHeader_cookie(more = {}){
+    return  {"Content-Type":"application/json",...more,Cookie:authToken};  
+}
+function getHeader_cookie2(more = {}){
+    return  {...more,Cookie:authToken};  
+}
+
+function setCookie (name, token){
+    authToken = name + "=" + token
+    localStorage.setItem("cookie", authToken);
+}
+
+function clearData2(){
+    localStorage.removeItem("cookie");
+    localStorage.removeItem("userInfo");
+}
+
+function loginAdmin(username, password) {
+    var url = HOST + "api/admin/login";
+    console.log("url: ", url)
+    console.log("host: ", HOST)
+    try{
+        return fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            body: JSON.stringify({
+                username: username,
+                password: password
+            }),
+            headers: getHeader_cookie()
+        }).then(res => res.json()).then(json => {
+            console.log("data" + json.token)
+            if (json.code !== 200) {
+                throw new Error("Login failed");
+            }
+            setCookie(json.name, json.token);
+            json.data.user.timestamp = (new Date()).getTime();
+            setUserInfo(json.data.user);
+    
+            return json.data;
+        });
+    } catch (error){
+        console.error("Error during login:", error);
+        throw error;
+    }
+   
+}
+
+function logoutAdmin(){
+    var url = HOST + "api/admin/logout";
+    console.log("url: ", url)
+    console.log("host: ", HOST)
+    return fetch(url, {
+        method: 'GET',
+        mode: 'cors',
+        headers: getHeader_cookie()
+    }).then(res => res.json()).then(json => {
+        if (json.code !== 200) {
+            throw new Error("Logout failed");
+        }
+        clearData2();
+        return json.message;
+    });
+}
+
+function getMusic(id){
+    var url = HOST + "api/song/" + id;
+    return fetch(url, {
+        headers: getHeader_cookie()
+    }).then(res => res.json()).then(json =>{
+        if (json.code !== 200){
+            throw new Error("Request Failed")
+        }
+        return json.data;
+    })
+}
 
 export  {
     requestLogin,
@@ -986,6 +1000,6 @@ export  {
     HOST,
     
     loginAdmin,
-    getMusic
-    
+    getMusic,
+    logoutAdmin
 }

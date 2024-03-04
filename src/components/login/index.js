@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as ApiService from "../../services/ApiService"
 import { trackPromise } from 'react-promise-tracker';
-import { withRouter } from "react-router";
+import { withRouter } from "react-router-dom";
 
 function Login(props) {
   const [username, setUsername] = useState("");
@@ -11,22 +11,47 @@ function Login(props) {
     if (loading){
       return;
     } 
+    if (!username || !password) {
+      // Xác thực đầu vào người dùng, đảm bảo rằng cả username và password đều được cung cấp.
+      window.showAlert("Vui lòng nhập tên đăng nhập và mật khẩu.");
+      return;
+    }
     setLoading(true)
-    trackPromise(new Promise((resolve)=>{
-      
-        ApiService.loginAdmin(username,password).then((data)=>{
-            console.log(props)
-            props.history.push("/")
-            setLoading(false)
-            resolve()
-            trackPromise(new Promise((resolve)=>{}),"authen")
-        }).catch(e=>{
-            console.log(e)
-            resolve()
-            setLoading(false)
-            window.showAlert("Đăng nhập thất bại!");
-        })
-    }),"loading")
+    ApiService.loginAdmin(username, password).then((data) => {
+      console.log(props);
+      props.history.push("/");
+    })
+    .catch((error) => {
+      console.error("Đăng nhập thất bại:", error);
+      window.showAlert("Đăng nhập thất bại! Vui lòng thử lại sau.");
+    })
+    .finally(() => {
+      setLoading(false);
+    });
+  }
+  function doLogin(){
+    if (loading){
+      return;
+    } 
+    if (!username || !password) {
+      // Xác thực đầu vào người dùng, đảm bảo rằng cả username và password đều được cung cấp.
+      window.showAlert("Vui lòng nhập tên đăng nhập và mật khẩu.");
+      return;
+    }
+    setLoading(true)
+
+    ApiService.loginAdmin(username, password)
+      .then((data) => {
+        console.log(props);
+        props.history.push("/");
+      })
+      .catch((error) => {
+        console.error("Đăng nhập thất bại:", error);
+        window.showAlert("Đăng nhập thất bại! Vui lòng thử lại sau.");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }
 
   useEffect(() => {
@@ -130,4 +155,4 @@ function Login(props) {
   );
 }
 
-export default withRouter(Login)
+export default withRouter(Login);

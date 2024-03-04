@@ -10,7 +10,7 @@ function Dashboard() {
                 <div className="ps-3">
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb mb-0 p-0">
-                            <li className="breadcrumb-item"><a href="javascript:;"><i className="bx bx-home-alt"></i></a>
+                            <li className="breadcrumb-item"><a href="#"><i className="bx bx-home-alt"></i></a>
                             </li>
                             <li className="breadcrumb-item active" aria-current="page">eCommerce</li>
                         </ol>
@@ -21,10 +21,10 @@ function Dashboard() {
                         <button type="button" className="btn btn-primary">Settings</button>
                         <button type="button" className="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">	<span className="visually-hidden">Toggle Dropdown</span>
                         </button>
-                        <div className="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">	<a className="dropdown-item" href="javascript:;">Action</a>
-                            <a className="dropdown-item" href="javascript:;">Another action</a>
-                            <a className="dropdown-item" href="javascript:;">Something else here</a>
-                            <div className="dropdown-divider"></div>	<a className="dropdown-item" href="javascript:;">Separated link</a>
+                        <div className="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">	<a className="dropdown-item" href="#">Action</a>
+                            <a className="dropdown-item" href="#">Another action</a>
+                            <a className="dropdown-item" href="#">Something else here</a>
+                            <div className="dropdown-divider"></div>	<a className="dropdown-item" href="#">Separated link</a>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@ function Dashboard() {
                         <div className="card-body">
                             <div className="d-flex align-items-center justify-content-around flex-wrap gap-4 p-4">
                                 <div className="d-flex flex-column align-items-center justify-content-center gap-2">
-                                    <a href="javascript:;" className="mb-2 wh-48 bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center">
+                                    <a href="#" className="mb-2 wh-48 bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center">
                                         <i className="material-icons-outlined">shopping_cart</i>
                                     </a>
                                     <h3 className="mb-0">85,246</h3>
@@ -59,7 +59,7 @@ function Dashboard() {
                                 </div>
                                 <div className="vr"></div>
                                 <div className="d-flex flex-column align-items-center justify-content-center gap-2">
-                                    <a href="javascript:;" className="mb-2 wh-48 bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center">
+                                    <a href="#" className="mb-2 wh-48 bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center">
                                         <i className="material-icons-outlined">print</i>
                                     </a>
                                     <h3 className="mb-0">$96,147</h3>
@@ -67,7 +67,7 @@ function Dashboard() {
                                 </div>
                                 <div className="vr"></div>
                                 <div className="d-flex flex-column align-items-center justify-content-center gap-2">
-                                    <a href="javascript:;" className="mb-2 wh-48 bg-danger bg-opacity-10 text-danger rounded-circle d-flex align-items-center justify-content-center">
+                                    <a href="#" className="mb-2 wh-48 bg-danger bg-opacity-10 text-danger rounded-circle d-flex align-items-center justify-content-center">
                                         <i className="material-icons-outlined">notifications</i>
                                     </a>
                                     <h3 className="mb-0">846</h3>
@@ -76,7 +76,7 @@ function Dashboard() {
                                 <div className="vr"></div>
 
                                 <div className="d-flex flex-column align-items-center justify-content-center gap-2">
-                                    <a href="javascript:;" className="mb-2 wh-48 bg-info bg-opacity-10 text-info rounded-circle d-flex align-items-center justify-content-center">
+                                    <a href="#" className="mb-2 wh-48 bg-info bg-opacity-10 text-info rounded-circle d-flex align-items-center justify-content-center">
                                         <i className="material-icons-outlined">payment</i>
                                     </a>
                                     <h3 className="mb-0">$84,472</h3>
@@ -102,14 +102,14 @@ function Dashboard() {
                                                     <p className="mb-0">Total Users</p>
                                                 </div>
                                                 <div className="dropdown">
-                                                    <a href="javascript:;" className="dropdown-toggle-nocaret options dropdown-toggle"
+                                                    <a href="#" className="dropdown-toggle-nocaret options dropdown-toggle"
                                                         data-bs-toggle="dropdown">
                                                         <span className="material-icons-outlined fs-5">more_vert</span>
                                                     </a>
                                                     <ul className="dropdown-menu">
-                                                        <li><a className="dropdown-item" href="javascript:;">Action</a></li>
-                                                        <li><a className="dropdown-item" href="javascript:;">Another action</a></li>
-                                                        <li><a className="dropdown-item" href="javascript:;">Something else here</a></li>
+                                                        <li><a className="dropdown-item" href="#">Action</a></li>
+                                                        <li><a className="dropdown-item" href="#">Another action</a></li>
+                                                        <li><a className="dropdown-item" href="#">Something else here</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -131,14 +131,14 @@ function Dashboard() {
                                                     <p className="mb-0">Active Users</p>
                                                 </div>
                                                 <div className="dropdown">
-                                                    <a href="javascript:;" className="dropdown-toggle-nocaret options dropdown-toggle"
+                                                    <a href="#" className="dropdown-toggle-nocaret options dropdown-toggle"
                                                         data-bs-toggle="dropdown">
                                                         <span className="material-icons-outlined fs-5">more_vert</span>
                                                     </a>
                                                     <ul className="dropdown-menu">
-                                                        <li><a className="dropdown-item" href="javascript:;">Action</a></li>
-                                                        <li><a className="dropdown-item" href="javascript:;">Another action</a></li>
-                                                        <li><a className="dropdown-item" href="javascript:;">Something else here</a></li>
+                                                        <li><a className="dropdown-item" href="#">Action</a></li>
+                                                        <li><a className="dropdown-item" href="#">Another action</a></li>
+                                                        <li><a className="dropdown-item" href="#">Something else here</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -188,14 +188,14 @@ function Dashboard() {
                                     <h5 className="mb-0 fw-bold">Sales & Views</h5>
                                 </div>
                                 <div className="dropdown">
-                                    <a href="javascript:;" className="dropdown-toggle-nocaret options dropdown-toggle"
+                                    <a href="#" className="dropdown-toggle-nocaret options dropdown-toggle"
                                         data-bs-toggle="dropdown">
                                         <span className="material-icons-outlined fs-5">more_vert</span>
                                     </a>
                                     <ul className="dropdown-menu">
-                                        <li><a className="dropdown-item" href="javascript:;">Action</a></li>
-                                        <li><a className="dropdown-item" href="javascript:;">Another action</a></li>
-                                        <li><a className="dropdown-item" href="javascript:;">Something else here</a></li>
+                                        <li><a className="dropdown-item" href="#">Action</a></li>
+                                        <li><a className="dropdown-item" href="#">Another action</a></li>
+                                        <li><a className="dropdown-item" href="#">Something else here</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -226,14 +226,14 @@ function Dashboard() {
                                     <h5 className="mb-0 fw-bold">Campaign</h5>
                                 </div>
                                 <div className="dropdown">
-                                    <a href="javascript:;" className="dropdown-toggle-nocaret options dropdown-toggle"
+                                    <a href="#" className="dropdown-toggle-nocaret options dropdown-toggle"
                                         data-bs-toggle="dropdown">
                                         <span className="material-icons-outlined fs-5">more_vert</span>
                                     </a>
                                     <ul className="dropdown-menu">
-                                        <li><a className="dropdown-item" href="javascript:;">Action</a></li>
-                                        <li><a className="dropdown-item" href="javascript:;">Another action</a></li>
-                                        <li><a className="dropdown-item" href="javascript:;">Something else here</a></li>
+                                        <li><a className="dropdown-item" href="#">Action</a></li>
+                                        <li><a className="dropdown-item" href="#">Another action</a></li>
+                                        <li><a className="dropdown-item" href="#">Something else here</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -358,14 +358,14 @@ function Dashboard() {
                                     <h5 className="mb-0 fw-bold">Ongoing Projects</h5>
                                 </div>
                                 <div className="dropdown">
-                                    <a href="javascript:;" className="dropdown-toggle-nocaret options dropdown-toggle"
+                                    <a href="#" className="dropdown-toggle-nocaret options dropdown-toggle"
                                         data-bs-toggle="dropdown">
                                         <span className="material-icons-outlined fs-5">more_vert</span>
                                     </a>
                                     <ul className="dropdown-menu">
-                                        <li><a className="dropdown-item" href="javascript:;">Action</a></li>
-                                        <li><a className="dropdown-item" href="javascript:;">Another action</a></li>
-                                        <li><a className="dropdown-item" href="javascript:;">Something else here</a></li>
+                                        <li><a className="dropdown-item" href="#">Action</a></li>
+                                        <li><a className="dropdown-item" href="#">Another action</a></li>
+                                        <li><a className="dropdown-item" href="#">Something else here</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -474,19 +474,20 @@ function Dashboard() {
                                 </div>
                                 <div className="d-flex align-items-center gap-4">
                                     <div className="d-flex align-items-center gap-3 flex-grow-1 flex-shrink-0">
-                                        <div className="wh-48 d-flex align-items-center justify-content-center rounded-3 border" />
-                                        <img src="./assets/images/projects/python.png" width="30" alt="" />
+                                        <div className="wh-48 d-flex align-items-center justify-content-center rounded-3 border">
+                                            <img src="./assets/images/projects/python.png" width="30" alt="" />
+                                        </div>
+                                        <div className="">
+                                            <h6 className="mb-0 fw-bold">Python</h6>
+                                            <p className="mb-0">User Panel</p>
+                                        </div>
+                                    </div>
+                                    <div className="progress w-25" style={{ height: '5px' }}>
+                                        <div className="progress-bar" style={{ width: '45%' }}></div>
                                     </div>
                                     <div className="">
-                                        <h6 className="mb-0 fw-bold">Python</h6>
-                                        <p className="mb-0">User Panel</p>
+                                        <p className="mb-0 fs-6">45%</p>
                                     </div>
-                                </div>
-                                <div className="progress w-25" style={{ height: '5px' }}>
-                                    <div className="progress-bar" style={{ width: '45%' }}></div>
-                                </div>
-                                <div className="">
-                                    <p className="mb-0 fs-6">45%</p>
                                 </div>
                             </div>
                         </div>
@@ -500,14 +501,14 @@ function Dashboard() {
                                     <h5 className="mb-0 fw-bold">Recent Transactions</h5>
                                 </div>
                                 <div className="dropdown">
-                                    <a href="javascript:;" className="dropdown-toggle-nocaret options dropdown-toggle"
+                                    <a href="#" className="dropdown-toggle-nocaret options dropdown-toggle"
                                         data-bs-toggle="dropdown">
                                         <span className="material-icons-outlined fs-5">more_vert</span>
                                     </a>
                                     <ul className="dropdown-menu">
-                                        <li><a className="dropdown-item" href="javascript:;">Action</a></li>
-                                        <li><a className="dropdown-item" href="javascript:;">Another action</a></li>
-                                        <li><a className="dropdown-item" href="javascript:;">Something else here</a></li>
+                                        <li><a className="dropdown-item" href="#">Action</a></li>
+                                        <li><a className="dropdown-item" href="#">Another action</a></li>
+                                        <li><a className="dropdown-item" href="#">Something else here</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -612,14 +613,14 @@ function Dashboard() {
                                     <h5 className="mb-0 fw-bold">Popular Products</h5>
                                 </div>
                                 <div className="dropdown">
-                                    <a href="javascript:;" className="dropdown-toggle-nocaret options dropdown-toggle"
+                                    <a href="#" className="dropdown-toggle-nocaret options dropdown-toggle"
                                         data-bs-toggle="dropdown">
                                         <span className="material-icons-outlined fs-5">more_vert</span>
                                     </a>
                                     <ul className="dropdown-menu">
-                                        <li><a className="dropdown-item" href="javascript:;">Action</a></li>
-                                        <li><a className="dropdown-item" href="javascript:;">Another action</a></li>
-                                        <li><a className="dropdown-item" href="javascript:;">Something else here</a></li>
+                                        <li><a className="dropdown-item" href="#">Action</a></li>
+                                        <li><a className="dropdown-item" href="#">Another action</a></li>
+                                        <li><a className="dropdown-item" href="#">Something else here</a></li>
                                     </ul>
                                 </div>
                             </div>

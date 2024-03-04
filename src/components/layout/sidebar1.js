@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as ApiService from "../../services/ApiService"
 import { usePromiseTracker } from "react-promise-tracker";
 import { baseurl } from "../config"
@@ -19,22 +19,22 @@ function Sidebar() {
                         <p className="mb-0">Administrator</p>
                     </div>
                     <div className="list-group list-group-flush mt-3 profil-menu fw-bold">
-                        <a href="javascript:;"
+                        <a href="#"
                             className="list-group-item list-group-item-action d-flex align-items-center gap-2 border-top"><i
                                 className="material-icons-outlined">person_outline</i>Profile</a>
-                        <a href="javascript:;"
+                        <a href="#"
                             className="list-group-item list-group-item-action d-flex align-items-center gap-2"><i
                                 className="material-icons-outlined">local_bar</i>Setting</a>
-                        <a href="javascript:;"
+                        <a href="#"
                             className="list-group-item list-group-item-action d-flex align-items-center gap-2"><i
                                 className="material-icons-outlined">dashboard</i>Dashboard</a>
-                        <a href="javascript:;"
+                        <a href="#"
                             className="list-group-item list-group-item-action d-flex align-items-center gap-2"><i
                                 className="material-icons-outlined">account_balance</i>Earning</a>
-                        <a href="javascript:;"
+                        <a href="#"
                             className="list-group-item list-group-item-action d-flex align-items-center gap-2"><i
                                 className="material-icons-outlined">cloud_download</i>Downloads</a>
-                        <a href="javascript:;"
+                        <a href="#"
                             className="list-group-item list-group-item-action d-flex align-items-center gap-2 border-bottom"><i
                                 className="material-icons-outlined">power_settings_new</i>Logout</a>
                     </div>

@@ -9,7 +9,7 @@ function Customize() {
                     <h5 className="mb-0">Theme Customizer</h5>
                     <p className="mb-0">Customize your theme</p>
                 </div>
-                <a href="javascript:;" className="primaery-menu-close" data-bs-dismiss="offcanvas">
+                <a href="#" className="primaery-menu-close" data-bs-dismiss="offcanvas">
                     <i className="material-icons-outlined">close</i>
                 </a>
             </div>
