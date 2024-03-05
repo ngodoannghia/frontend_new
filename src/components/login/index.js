@@ -7,51 +7,34 @@ function Login(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false); 
-  function doLogin(){
-    if (loading){
-      return;
-    } 
-    if (!username || !password) {
-      // Xác thực đầu vào người dùng, đảm bảo rằng cả username và password đều được cung cấp.
-      window.showAlert("Vui lòng nhập tên đăng nhập và mật khẩu.");
-      return;
-    }
-    setLoading(true)
-    ApiService.loginAdmin(username, password).then((data) => {
-      console.log(props);
-      props.history.push("/");
-    })
-    .catch((error) => {
-      console.error("Đăng nhập thất bại:", error);
-      window.showAlert("Đăng nhập thất bại! Vui lòng thử lại sau.");
-    })
-    .finally(() => {
-      setLoading(false);
-    });
-  }
-  function doLogin(){
-    if (loading){
-      return;
-    } 
-    if (!username || !password) {
-      // Xác thực đầu vào người dùng, đảm bảo rằng cả username và password đều được cung cấp.
-      window.showAlert("Vui lòng nhập tên đăng nhập và mật khẩu.");
-      return;
-    }
-    setLoading(true)
 
-    ApiService.loginAdmin(username, password)
-      .then((data) => {
-        console.log(props);
-        props.history.push("/");
-      })
-      .catch((error) => {
-        console.error("Đăng nhập thất bại:", error);
-        window.showAlert("Đăng nhập thất bại! Vui lòng thử lại sau.");
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+  function doLogin() {
+    if (loading){
+      return;
+    } 
+
+    if (username == '' || password == ''){
+      window.showAlert("Vui lòng nhập username hoặc password!");
+      return;
+    }
+
+    setLoading(true)
+    trackPromise(new Promise((resolve)=>{
+      
+        ApiService.loginAdmin(username,password).then((data)=>{
+            console.log(props)
+            props.history.push("/")
+            resolve()
+            setLoading(false)
+            trackPromise(new Promise((resolve)=>{}),"authen")
+        }).catch(e=>{
+            console.log(e)
+            resolve()
+            setLoading(false)
+            window.showAlert("Username hoặc password không chính xác!");
+        })
+    }),"loading")
+
   }
 
   useEffect(() => {
@@ -77,7 +60,24 @@ function Login(props) {
         document.querySelector('#show_hide_password a').removeEventListener('click', handleTogglePassword);
     };
   }, []);
+  useEffect(() => {
+    const form = document.getElementById('myForm');
 
+    const handleSubmit = (event) => {
+        // Ngăn chặn hành vi mặc định của form reload
+        event.preventDefault();
+
+        // Xử lý logic của form ở đây
+        console.log('Form submitted!');
+    };
+
+    form.addEventListener('submit', handleSubmit);
+
+    // Cleanup: Loại bỏ event listener khi component unmount
+    return () => {
+        form.removeEventListener('submit', handleSubmit);
+    };
+  }, []);
   return (
     <div className="container-fluid my-5">
       <div className="row">
@@ -89,7 +89,7 @@ function Login(props) {
               <p className="mb-0">Enter your credentials to login your account</p>
 
               <div className="form-body my-4">
-                <form className="row g-3">
+                <form className="row g-3" id="myForm">
                   <div className="col-12">
                     <label htmlFor="inputEmailAddress" className="form-label">Username</label>
                     <input onChange = {(e)=>setUsername(e.target.value)} value={username} id="inputEmailAddress" type="text" className="form-control" placeholder="Enter username"/>

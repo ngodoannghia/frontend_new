@@ -16,42 +16,42 @@ import "./sass/responsive.css"
 import "./sass/bordered-theme.css"
 import "./sass/semi-dark.css"
 
-// const LoadingIndicator = props => {
-//      const { promiseInProgress } = usePromiseTracker({area:"loading"});
+const LoadingIndicator = props => {
+     const { promiseInProgress } = usePromiseTracker({area:"loading"});
   
-//      return (
-//        promiseInProgress && 
-//       <div style={{position:"fixed",bottom:0,left:0,width:"100%",zIndex:999,textAlign:"center"}}>
-//         <Loader type="Rings" color="#2BAD60" height="100" width="100" />
-//       </div>
-//     );  
-//    }
+     return (
+       promiseInProgress && 
+      <div style={{position:"fixed",bottom:0,left:0,width:"100%",zIndex:999,textAlign:"center"}}>
+        <Loader type="Rings" color="#2BAD60" height="100" width="100" />
+      </div>
+    );  
+   }
 
    
-// const Alert = props => {
-//  const { promiseInProgress } = usePromiseTracker({area:"alert"});
-//     const [show,setShow ] = useState(false)
-//     const [message,setMessage ] = useState({message:"",title:""})
-//     window.showAlert = function(message,title=""){
-//     setShow(true)
-//     setMessage({message:message,title:title})
-//    }
-//      return ( 
-//           <SweetAlert
-//           show={show}
-//           title={message.title}
-//           html={message.message}
-//           onConfirm={() =>setShow(false)}
-//         />
-//     );  
-// }
+const Alert = props => {
+ const { promiseInProgress } = usePromiseTracker({area:"alert"});
+    const [show,setShow ] = useState(false)
+    const [message,setMessage ] = useState({message:"",title:""})
+    window.showAlert = function(message,title=""){
+    setShow(true)
+    setMessage({message:message,title:title})
+   }
+     return ( 
+          <SweetAlert
+          show={show}
+          title={message.title}
+          html={message.message}
+          onConfirm={() =>setShow(false)}
+        />
+    );  
+}
  function App() {
   const[loading,setLoading] = useState(false)
   
   return (
     <div>
-      {/* <LoadingIndicator/> */}
-      {/* <Alert/> */}
+      <LoadingIndicator/>
+      <Alert/>
       <Router  basename={'/admin'} >
         <Switch> 
             <Route exact  path="/login" component={Login}/>
