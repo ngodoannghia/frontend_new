@@ -15,6 +15,7 @@ import "./sass/dark-theme.css"
 import "./sass/responsive.css"
 import "./sass/bordered-theme.css"
 import "./sass/semi-dark.css"
+import Page404 from './components/page/page404';
 
 const LoadingIndicator = props => {
      const { promiseInProgress } = usePromiseTracker({area:"loading"});
@@ -55,7 +56,7 @@ const Alert = props => {
       <Router  basename={'/admin'} >
         <Switch> 
             <Route exact  path="/login" component={Login}/>
-            <Route  component={Modules}   />
+            <Route component={Modules}   />
         </Switch> 
       </Router>
       {loading?<div style={{top:0,left:0, position:"fixed",width:"100%", height:"100%",zIndex:999999,background:"#222d32"}}><div style={{position:"absolute",top:"calc(50% - 50px)",left:"calc(50% - 50px)", color:"white",textAlign:"center"}}> <div>Đang tải</div><Loader type="Rings" color="#2BAD60" height="100" width="100" /></div></div>:null}

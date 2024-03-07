@@ -2,6 +2,9 @@
 import React from 'react';
 import { Redirect} from "react-router";
 import Dashboard from './dashboard';
+import PackService from './packService';
+import UploadMusic from './music/upload';
+import IndexMusic  from './music';
 
 import * as ApiService from "../services/ApiService"
 import {baseurl} from "./config"
@@ -14,13 +17,35 @@ function Logout(){
 
 const routers = [
     {
+        id:1,
         path: baseurl + "/",
-        component: Dashboard
+        component: Dashboard,
+        markEnd: 0
     },
-    // {
-    //     path:  baseurl + "/logout",
-    //     component: Logout
-    // }
+    {
+        id:2,
+        path: baseurl + "/pack",
+        component: PackService,
+        markEnd: 0
+    },
+    {
+        id:3,
+        path: baseurl + "/music",
+        component: IndexMusic,
+        markEnd: 0
+    },
+    {
+        id:4,
+        path: baseurl + "/music/upload",
+        component: UploadMusic,
+        markEnd: 0
+    },
+    {
+        id: 100,
+        path:  baseurl + "/logout",
+        component: Logout,
+        markEnd: 1
+    }
 ]
 
 export default routers;

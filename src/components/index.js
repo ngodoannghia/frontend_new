@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect } from "react-router";
+import { useLocation } from "react-router-dom"
 import * as ApiService from "../services/ApiService"
 import Sidebar2 from './layout/sidebar2';
 import Aside from './layout/aside';
@@ -7,25 +8,33 @@ import Customize from './layout/customize';
 import Header from './layout/header';
 import Sidebar from './layout/sidebar1';
 import routers from "./Router";
+import Page404 from './page/page404';
 import Cart from './layout/cart';
+import { baseurl } from './config';
 
 function App() {
 
   let isAuthen = ApiService.isAuthen()
+  let count = 0
+  const location = useLocation()
 
   return (
     isAuthen ?
-      <>
+      <div>
         <Header />
         <Aside />
         <main className="main-wrapper">
           {
             routers.map((m) => {
-              let Component = m.component;
-              if (Component){
-                return <Component exact path={m.path}></Component>
+              if (baseurl + location.pathname === m.path){
+                count += 1;
+                let Component = m.component;
+                return <Component key={m.id} exact path={m.path}></Component>
               }
-              return "Error render main-content";
+              if (m.markEnd === 1 && count === 0){
+                return <Page404></Page404>
+              }
+              return null;
             })
           }
         </main>
@@ -37,7 +46,7 @@ function App() {
           <i className="material-icons-outlined">tune</i>Customize
         </button>
         <Customize />
-      </> : <Redirect to="/login" />
+      </div> : <Redirect to="/login" />
   );
 }
 
