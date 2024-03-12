@@ -34,9 +34,9 @@ function Sidebar() {
                         <a href="#"
                             className="list-group-item list-group-item-action d-flex align-items-center gap-2"><i
                                 className="material-icons-outlined">cloud_download</i>Downloads</a>
-                        <a href="#"
-                            className="list-group-item list-group-item-action d-flex align-items-center gap-2 border-bottom"><i
-                                className="material-icons-outlined">power_settings_new</i>Logout</a>
+                        <a href={baseurl + "/logout"} className="list-group-item list-group-item-action d-flex align-items-center gap-2 border-bottom">
+                            <i className="material-icons-outlined">power_settings_new</i>Logout
+                        </a>
                     </div>
                 </div>
 

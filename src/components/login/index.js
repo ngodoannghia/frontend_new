@@ -25,6 +25,7 @@ function Login(props) {
             console.log(props)
             props.history.push("/")
             resolve()
+            setLoading(false)
             trackPromise(new Promise((resolve)=>{}),"authen")
         }).catch(e=>{
             console.log(e)

@@ -886,6 +886,7 @@ function setCookie (name, token){
 function clearData2(){
     localStorage.removeItem("cookie");
     localStorage.removeItem("userInfo");
+    authToken = null;
 }
 
 function loginAdmin(username, password) {
@@ -931,6 +932,7 @@ function logoutAdmin(){
         if (json.code !== 200) {
             throw new Error("Logout failed");
         }
+        console.log("Logout success")
         clearData2();
         return json.message;
     });
