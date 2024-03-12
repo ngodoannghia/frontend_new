@@ -25,13 +25,12 @@ function Login(props) {
             console.log(props)
             props.history.push("/")
             resolve()
-            setLoading(false)
             trackPromise(new Promise((resolve)=>{}),"authen")
         }).catch(e=>{
             console.log(e)
             resolve()
             setLoading(false)
-            window.showAlert("Username hoặc password không chính xác!");
+            window.showAlert("Lỗi đăng nhập!");
         })
     }),"loading")
 
