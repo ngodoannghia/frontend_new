@@ -949,6 +949,28 @@ function getMusic(id){
         return json.data;
     })
 }
+function getPageMusicAll(filter){ 
+   
+    var request = { 
+        page:filter.page-1,
+        limit:filter.limit  ?? 20
+    }  
+    var url = HOST+"api/song/get/bypage/"+request.page+"?limit="+request.limit+"&sortType=desc";
+ 
+    return  fetch(url,{
+        method: 'GET',  
+        headers:  getHeader()
+    }).then(res => res.json()).then(json=>{
+        if (json.code != 0){
+            throw "Error request"
+            return;
+        } 
+        if (json.data == null ){
+            throw "Error request"
+        } 
+        return json.data;
+    });
+}
 
 export  {
     requestLogin,
@@ -1003,5 +1025,6 @@ export  {
     
     loginAdmin,
     getMusic,
-    logoutAdmin
+    logoutAdmin,
+    getPageMusicAll
 }

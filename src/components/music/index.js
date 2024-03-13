@@ -1,7 +1,105 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { baseurl } from "../config";
+import { getPageMusicAll, displayDateTime } from "../../services/ApiService"
+import { trackPromise } from 'react-promise-tracker';
+import { withRouter } from "react-router";
 
-function IndexMusic() {
+function IndexMusic(props) {
+    var [datasource,setDatasource] = useState([]);
+    var [pagging,setPagging] =  useState([1]);
+
+    const [filterOption,setExFilterOption] = useState({
+        limit:20,
+        page:1, 
+        status:-1,
+        totalItem: 0
+    }) 
+
+    useEffect(()=>{
+
+        trackPromise(getPageMusicAll({...filterOption} ).then((data)=>{
+          setDatasource(data.content);
+          var totalPage = data["totalPages"];
+          var pages = [];
+          for (var i =1 ;i <= totalPage;i ++){
+            pages.push(i);
+          }
+          setPagging(pages);
+          setExFilterOption({...filterOption,totalItem:data["totalElements"]});
+        }),"loading")
+    
+    },[])
+
+    function setFilterOption(obj){
+        if (obj.page == filterOption.page){
+          obj.page = 1
+        }
+        setExFilterOption(obj);
+        trackPromise(getPageMusicAll(obj).then((data)=>{
+              setDatasource(data.content);
+              var totalPage = data["totalPages"];
+              var pages = [1];
+              for (var i =2 ;i <= totalPage;i ++){
+                pages.push(i);
+              }
+              setPagging(pages);
+              setExFilterOption({...obj,totalItem:data["totalElements"]});
+        }),"loading")
+    }
+    
+    function renderItem(m,index){
+        <tr key={"item_"+(index+1)}>
+            <td>
+                <input className="form-check-input" type="checkbox"/>
+            </td>
+            <td>
+                <div className="d-flex align-items-center gap-3">
+                    <div className="product-box">
+                        <img src="https://placehold.co/75x50" width="70" className="rounded-3" alt=""/>
+                    </div>
+                    <div className="product-info">
+                        <a href="javascript:;" className="product-title">{m.title}</a>
+                        <p className="mb-0 product-category">Category : {m.category.name}</p>
+                    </div>
+                </div>
+            </td>
+            <td>{m.pack.name}</td>
+            <td></td>
+            <td>
+                <div className="product-tags">
+                    {
+                        m.singer.map(s => (
+                            <a href="javascript:;" className="btn-tags">s.name</a>
+                        ))
+                    }
+                </div>
+            </td>
+            <td>
+                <div className="product-rating">
+                    <i className="bi bi-star-fill text-warning me-2"></i><span>{m.view !== null?m.view:0}</span>
+                </div>
+            </td>
+            <td>
+                <a href="javascript:;">{m.description}</a>
+            </td>
+            <td>
+                {displayDateTime(m.create_at)}
+            </td>
+            <td>
+                <div className="dropdown">
+                    <button className="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
+                        type="button" data-bs-toggle="dropdown">
+                        <i className="bi bi-three-dots"></i>
+                    </button>
+                    <ul className="dropdown-menu">
+                        <li><a className="dropdown-item" href="#">Action</a></li>
+                        <li><a className="dropdown-item" href="#">Another action</a></li>
+                        <li><a className="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    }
     return (
         <div className="main-content">
             <div className="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -121,466 +219,9 @@ function IndexMusic() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <input className="form-check-input" type="checkbox"/>
-                                        </td>
-                                        <td>
-                                            <div className="d-flex align-items-center gap-3">
-                                                <div className="product-box">
-                                                    <img src="https://placehold.co/75x50" width="70" className="rounded-3" alt=""/>
-                                                </div>
-                                                <div className="product-info">
-                                                    <a href="javascript:;" className="product-title">Women Pink Floral Printed</a>
-                                                    <p className="mb-0 product-category">Category : Fashion</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>$49</td>
-                                        <td>Palazzos</td>
-                                        <td>
-                                            <div className="product-tags">
-                                                <a href="javascript:;" className="btn-tags">Jeans</a>
-                                                <a href="javascript:;" className="btn-tags">iPhone</a>
-                                                <a href="javascript:;" className="btn-tags">Laptops</a>
-                                                <a href="javascript:;" className="btn-tags">Mobiles</a>
-                                                <a href="javascript:;" className="btn-tags">Wallets</a>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div className="product-rating">
-                                                <i className="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <a href="javascript:;">Michle Shoes England</a>
-                                        </td>
-                                        <td>
-                                            Nov 12, 10:45 PM
-                                        </td>
-                                        <td>
-                                            <div className="dropdown">
-                                                <button className="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                                                    type="button" data-bs-toggle="dropdown">
-                                                    <i className="bi bi-three-dots"></i>
-                                                </button>
-                                                <ul className="dropdown-menu">
-                                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input className="form-check-input" type="checkbox"/>
-                                        </td>
-                                        <td>
-                                            <div className="d-flex align-items-center gap-3">
-                                                <div className="product-box">
-                                                    <img src="https://placehold.co/75x50" width="70" className="rounded-3" alt=""/>
-                                                </div>
-                                                <div className="product-info">
-                                                    <a href="javascript:;" className="product-title">Women Pink Floral Printed</a>
-                                                    <p className="mb-0 product-category">Category : Fashion</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>$49</td>
-                                        <td>Palazzos</td>
-                                        <td>
-                                            <div className="product-tags">
-                                                <a href="javascript:;" className="btn-tags">Jeans</a>
-                                                <a href="javascript:;" className="btn-tags">iPhone</a>
-                                                <a href="javascript:;" className="btn-tags">Laptops</a>
-                                                <a href="javascript:;" className="btn-tags">Mobiles</a>
-                                                <a href="javascript:;" className="btn-tags">Wallets</a>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div className="product-rating">
-                                                <i className="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <a href="javascript:;">Michle Shoes England</a>
-                                        </td>
-                                        <td>
-                                            Nov 12, 10:45 PM
-                                        </td>
-                                        <td>
-                                            <div className="dropdown">
-                                                <button className="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                                                    type="button" data-bs-toggle="dropdown">
-                                                    <i className="bi bi-three-dots"></i>
-                                                </button>
-                                                <ul className="dropdown-menu">
-                                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input className="form-check-input" type="checkbox"/>
-                                        </td>
-                                        <td>
-                                            <div className="d-flex align-items-center gap-3">
-                                                <div className="product-box">
-                                                    <img src="https://placehold.co/75x50" width="70" className="rounded-3" alt=""/>
-                                                </div>
-                                                <div className="product-info">
-                                                    <a href="javascript:;" className="product-title">Women Pink Floral Printed</a>
-                                                    <p className="mb-0 product-category">Category : Fashion</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>$49</td>
-                                        <td>Palazzos</td>
-                                        <td>
-                                            <div className="product-tags">
-                                                <a href="javascript:;" className="btn-tags">Jeans</a>
-                                                <a href="javascript:;" className="btn-tags">iPhone</a>
-                                                <a href="javascript:;" className="btn-tags">Laptops</a>
-                                                <a href="javascript:;" className="btn-tags">Mobiles</a>
-                                                <a href="javascript:;" className="btn-tags">Wallets</a>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div className="product-rating">
-                                                <i className="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <a href="javascript:;">Michle Shoes England</a>
-                                        </td>
-                                        <td>
-                                            Nov 12, 10:45 PM
-                                        </td>
-                                        <td>
-                                            <div className="dropdown">
-                                                <button className="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                                                    type="button" data-bs-toggle="dropdown">
-                                                    <i className="bi bi-three-dots"></i>
-                                                </button>
-                                                <ul className="dropdown-menu">
-                                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input className="form-check-input" type="checkbox"/>
-                                        </td>
-                                        <td>
-                                            <div className="d-flex align-items-center gap-3">
-                                                <div className="product-box">
-                                                    <img src="https://placehold.co/75x50" width="70" className="rounded-3" alt=""/>
-                                                </div>
-                                                <div className="product-info">
-                                                    <a href="javascript:;" className="product-title">Women Pink Floral Printed</a>
-                                                    <p className="mb-0 product-category">Category : Fashion</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>$49</td>
-                                        <td>Palazzos</td>
-                                        <td>
-                                            <div className="product-tags">
-                                                <a href="javascript:;" className="btn-tags">Jeans</a>
-                                                <a href="javascript:;" className="btn-tags">iPhone</a>
-                                                <a href="javascript:;" className="btn-tags">Laptops</a>
-                                                <a href="javascript:;" className="btn-tags">Mobiles</a>
-                                                <a href="javascript:;" className="btn-tags">Wallets</a>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div className="product-rating">
-                                                <i className="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <a href="javascript:;">Michle Shoes England</a>
-                                        </td>
-                                        <td>
-                                            Nov 12, 10:45 PM
-                                        </td>
-                                        <td>
-                                            <div className="dropdown">
-                                                <button className="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                                                    type="button" data-bs-toggle="dropdown">
-                                                    <i className="bi bi-three-dots"></i>
-                                                </button>
-                                                <ul className="dropdown-menu">
-                                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input className="form-check-input" type="checkbox"/>
-                                        </td>
-                                        <td>
-                                            <div className="d-flex align-items-center gap-3">
-                                                <div className="product-box">
-                                                    <img src="https://placehold.co/75x50" width="70" className="rounded-3" alt=""/>
-                                                </div>
-                                                <div className="product-info">
-                                                    <a href="javascript:;" className="product-title">Women Pink Floral Printed</a>
-                                                    <p className="mb-0 product-category">Category : Fashion</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>$49</td>
-                                        <td>Palazzos</td>
-                                        <td>
-                                            <div className="product-tags">
-                                                <a href="javascript:;" className="btn-tags">Jeans</a>
-                                                <a href="javascript:;" className="btn-tags">iPhone</a>
-                                                <a href="javascript:;" className="btn-tags">Laptops</a>
-                                                <a href="javascript:;" className="btn-tags">Mobiles</a>
-                                                <a href="javascript:;" className="btn-tags">Wallets</a>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div className="product-rating">
-                                                <i className="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <a href="javascript:;">Michle Shoes England</a>
-                                        </td>
-                                        <td>
-                                            Nov 12, 10:45 PM
-                                        </td>
-                                        <td>
-                                            <div className="dropdown">
-                                                <button className="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                                                    type="button" data-bs-toggle="dropdown">
-                                                    <i className="bi bi-three-dots"></i>
-                                                </button>
-                                                <ul className="dropdown-menu">
-                                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input className="form-check-input" type="checkbox"/>
-                                        </td>
-                                        <td>
-                                            <div className="d-flex align-items-center gap-3">
-                                                <div className="product-box">
-                                                    <img src="https://placehold.co/75x50" width="70" className="rounded-3" alt=""/>
-                                                </div>
-                                                <div className="product-info">
-                                                    <a href="javascript:;" className="product-title">Women Pink Floral Printed</a>
-                                                    <p className="mb-0 product-category">Category : Fashion</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>$49</td>
-                                        <td>Palazzos</td>
-                                        <td>
-                                            <div className="product-tags">
-                                                <a href="javascript:;" className="btn-tags">Jeans</a>
-                                                <a href="javascript:;" className="btn-tags">iPhone</a>
-                                                <a href="javascript:;" className="btn-tags">Laptops</a>
-                                                <a href="javascript:;" className="btn-tags">Mobiles</a>
-                                                <a href="javascript:;" className="btn-tags">Wallets</a>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div className="product-rating">
-                                                <i className="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <a href="javascript:;">Michle Shoes England</a>
-                                        </td>
-                                        <td>
-                                            Nov 12, 10:45 PM
-                                        </td>
-                                        <td>
-                                            <div className="dropdown">
-                                                <button className="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                                                    type="button" data-bs-toggle="dropdown">
-                                                    <i className="bi bi-three-dots"></i>
-                                                </button>
-                                                <ul className="dropdown-menu">
-                                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input className="form-check-input" type="checkbox"/>
-                                        </td>
-                                        <td>
-                                            <div className="d-flex align-items-center gap-3">
-                                                <div className="product-box">
-                                                    <img src="https://placehold.co/75x50" width="70" className="rounded-3" alt=""/>
-                                                </div>
-                                                <div className="product-info">
-                                                    <a href="javascript:;" className="product-title">Women Pink Floral Printed</a>
-                                                    <p className="mb-0 product-category">Category : Fashion</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>$49</td>
-                                        <td>Palazzos</td>
-                                        <td>
-                                            <div className="product-tags">
-                                                <a href="javascript:;" className="btn-tags">Jeans</a>
-                                                <a href="javascript:;" className="btn-tags">iPhone</a>
-                                                <a href="javascript:;" className="btn-tags">Laptops</a>
-                                                <a href="javascript:;" className="btn-tags">Mobiles</a>
-                                                <a href="javascript:;" className="btn-tags">Wallets</a>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div className="product-rating">
-                                                <i className="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <a href="javascript:;">Michle Shoes England</a>
-                                        </td>
-                                        <td>
-                                            Nov 12, 10:45 PM
-                                        </td>
-                                        <td>
-                                            <div className="dropdown">
-                                                <button className="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                                                    type="button" data-bs-toggle="dropdown">
-                                                    <i className="bi bi-three-dots"></i>
-                                                </button>
-                                                <ul className="dropdown-menu">
-                                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input className="form-check-input" type="checkbox"/>
-                                        </td>
-                                        <td>
-                                            <div className="d-flex align-items-center gap-3">
-                                                <div className="product-box">
-                                                    <img src="https://placehold.co/75x50" width="70" className="rounded-3" alt=""/>
-                                                </div>
-                                                <div className="product-info">
-                                                    <a href="javascript:;" className="product-title">Women Pink Floral Printed</a>
-                                                    <p className="mb-0 product-category">Category : Fashion</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>$49</td>
-                                        <td>Palazzos</td>
-                                        <td>
-                                            <div className="product-tags">
-                                                <a href="javascript:;" className="btn-tags">Jeans</a>
-                                                <a href="javascript:;" className="btn-tags">iPhone</a>
-                                                <a href="javascript:;" className="btn-tags">Laptops</a>
-                                                <a href="javascript:;" className="btn-tags">Mobiles</a>
-                                                <a href="javascript:;" className="btn-tags">Wallets</a>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div className="product-rating">
-                                                <i className="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <a href="javascript:;">Michle Shoes England</a>
-                                        </td>
-                                        <td>
-                                            Nov 12, 10:45 PM
-                                        </td>
-                                        <td>
-                                            <div className="dropdown">
-                                                <button className="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                                                    type="button" data-bs-toggle="dropdown">
-                                                    <i className="bi bi-three-dots"></i>
-                                                </button>
-                                                <ul className="dropdown-menu">
-                                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input className="form-check-input" type="checkbox"/>
-                                        </td>
-                                        <td>
-                                            <div className="d-flex align-items-center gap-3">
-                                                <div className="product-box">
-                                                    <img src="https://placehold.co/75x50" width="70" className="rounded-3" alt=""/>
-                                                </div>
-                                                <div className="product-info">
-                                                    <a href="javascript:;" className="product-title">Women Pink Floral Printed</a>
-                                                    <p className="mb-0 product-category">Category : Fashion</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>$49</td>
-                                        <td>Palazzos</td>
-                                        <td>
-                                            <div className="product-tags">
-                                                <a href="javascript:;" className="btn-tags">Jeans</a>
-                                                <a href="javascript:;" className="btn-tags">iPhone</a>
-                                                <a href="javascript:;" className="btn-tags">Laptops</a>
-                                                <a href="javascript:;" className="btn-tags">Mobiles</a>
-                                                <a href="javascript:;" className="btn-tags">Wallets</a>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div className="product-rating">
-                                                <i className="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <a href="javascript:;">Michle Shoes England</a>
-                                        </td>
-                                        <td>
-                                            Nov 12, 10:45 PM
-                                        </td>
-                                        <td>
-                                            <div className="dropdown">
-                                                <button className="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                                                    type="button" data-bs-toggle="dropdown">
-                                                    <i className="bi bi-three-dots"></i>
-                                                </button>
-                                                <ul className="dropdown-menu">
-                                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-
+                                {
+                                    datasource.map((m,index)=>renderItem(m,index))
+                                }
                                 </tbody>
                             </table>
                         </div>
@@ -591,4 +232,4 @@ function IndexMusic() {
     );
 }
 
-export default IndexMusic;
+export default withRouter(IndexMusic);
