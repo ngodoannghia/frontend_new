@@ -974,7 +974,21 @@ function getPageMusicAll(filter){
         return json.data;
     });
 }
-
+function uploadSong(data){
+    var url = HOST+"api/song/upload";
+     return  fetch(url,{
+        method: 'POST',
+        mode: 'cors', 
+        body:JSON.stringify(data),
+        headers:  getHeader_cookie()
+    }).then(res => res.json()).then(async json=>{
+        if (json.code !==200){
+            throw "Request Failed"
+            return;
+        }  
+        return json.data;
+    });
+}
 export  {
     requestLogin,
     setToken,
@@ -1029,5 +1043,6 @@ export  {
     loginAdmin,
     getMusic,
     logoutAdmin,
-    getPageMusicAll
+    getPageMusicAll,
+    uploadSong
 }
