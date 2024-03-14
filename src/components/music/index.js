@@ -48,6 +48,7 @@ function IndexMusic(props) {
     }
     
     function renderItem(m,index){
+        return (
         <tr key={"item_"+(index+1)}>
             <td>
                 <input className="form-check-input" type="checkbox"/>
@@ -58,18 +59,19 @@ function IndexMusic(props) {
                         <img src="https://placehold.co/75x50" width="70" className="rounded-3" alt=""/>
                     </div>
                     <div className="product-info">
-                        <a href="javascript:;" className="product-title">{m.title}</a>
-                        <p className="mb-0 product-category">Category : {m.category.name}</p>
+                        <a href="#" className="product-title">{m.title}</a>
+                        <p className="mb-0 product-category">Category : {m.category !== null ? m.category.name : "Default"}</p>
                     </div>
                 </div>
             </td>
-            <td>{m.pack.name}</td>
-            <td></td>
+            <td>{m.country !== null ? m.country.name : "Default" }</td>
+            <td>{m.album !== null ? m.album.name : "Default"}</td>
+            <td>{m.playlist !== null ? m.playlist.name : "Default"}</td>
             <td>
                 <div className="product-tags">
                     {
-                        m.singer.map(s => (
-                            <a href="javascript:;" className="btn-tags">s.name</a>
+                        m.singers.map(s => (
+                            <a href="#" className="btn-tags">{s.name}</a>
                         ))
                     }
                 </div>
@@ -80,7 +82,7 @@ function IndexMusic(props) {
                 </div>
             </td>
             <td>
-                <a href="javascript:;">{m.description}</a>
+                <a href="#">{m.pack !== null ? m.pack.name : 'Normal'}</a>
             </td>
             <td>
                 {displayDateTime(m.create_at)}
@@ -92,14 +94,15 @@ function IndexMusic(props) {
                         <i className="bi bi-three-dots"></i>
                     </button>
                     <ul className="dropdown-menu">
-                        <li><a className="dropdown-item" href="#">Action</a></li>
-                        <li><a className="dropdown-item" href="#">Another action</a></li>
+                        <li><a className="dropdown-item" href="#">Edit</a></li>
+                        <li><a className="dropdown-item" href="#">Delete</a></li>
                         <li><a className="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </div>
             </td>
         </tr>
-    }
+    )}
+
     return (
         <div className="main-content">
             <div className="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -107,7 +110,7 @@ function IndexMusic(props) {
                 <div className="ps-3">
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb mb-0 p-0">
-                            <li className="breadcrumb-item"><a href="javascript:;"><i className="bx bx-home-alt"></i></a>
+                            <li className="breadcrumb-item"><a href="#"><i className="bx bx-home-alt"></i></a>
                             </li>
                             <li className="breadcrumb-item active" aria-current="page">Products</li>
                         </ol>
@@ -120,20 +123,20 @@ function IndexMusic(props) {
                             data-bs-toggle="dropdown"> <span className="visually-hidden">Toggle Dropdown</span>
                         </button>
                         <div className="dropdown-menu dropdown-menu-right dropdown-menu-lg-end"> <a className="dropdown-item"
-                            href="javascript:;">Action</a>
-                            <a className="dropdown-item" href="javascript:;">Another action</a>
-                            <a className="dropdown-item" href="javascript:;">Something else here</a>
-                            <div className="dropdown-divider"></div> <a className="dropdown-item" href="javascript:;">Separated link</a>
+                            href="#">Action</a>
+                            <a className="dropdown-item" href="#">Another action</a>
+                            <a className="dropdown-item" href="#">Something else here</a>
+                            <div className="dropdown-divider"></div> <a className="dropdown-item" href="#">Separated link</a>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div className="product-count d-flex align-items-center gap-3 gap-lg-4 mb-4 fw-medium flex-wrap font-text1">
-                <a href="javascript:;"><span className="me-1">All</span><span className="text-secondary">(88754)</span></a>
-                <a href="javascript:;"><span className="me-1">Published</span><span className="text-secondary">(56242)</span></a>
-                <a href="javascript:;"><span className="me-1">Drafts</span><span className="text-secondary">(17)</span></a>
-                <a href="javascript:;"><span className="me-1">On Discount</span><span className="text-secondary">(88754)</span></a>
+                <a href="#"><span className="me-1">All</span><span className="text-secondary">(88754)</span></a>
+                <a href="#"><span className="me-1">Published</span><span className="text-secondary">(56242)</span></a>
+                <a href="#"><span className="me-1">Drafts</span><span className="text-secondary">(17)</span></a>
+                <a href="#"><span className="me-1">On Discount</span><span className="text-secondary">(88754)</span></a>
             </div>
 
             <div className="row g-3">
@@ -152,12 +155,12 @@ function IndexMusic(props) {
                                 Category
                             </button>
                             <ul className="dropdown-menu">
-                                <li><a className="dropdown-item" href="javascript:;">Action</a></li>
-                                <li><a className="dropdown-item" href="javascript:;">Another action</a></li>
+                                <li><a className="dropdown-item" href="#">Action</a></li>
+                                <li><a className="dropdown-item" href="#">Another action</a></li>
                                 <li>
                                     <hr className="dropdown-divider"/>
                                 </li>
-                                <li><a className="dropdown-item" href="javascript:;">Something else here</a></li>
+                                <li><a className="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </div>
                         <div className="btn-group position-static">
@@ -166,12 +169,12 @@ function IndexMusic(props) {
                                 Vendor
                             </button>
                             <ul className="dropdown-menu">
-                                <li><a className="dropdown-item" href="javascript:;">Action</a></li>
-                                <li><a className="dropdown-item" href="javascript:;">Another action</a></li>
+                                <li><a className="dropdown-item" href="#">Action</a></li>
+                                <li><a className="dropdown-item" href="#">Another action</a></li>
                                 <li>
                                     <hr className="dropdown-divider"/>
                                 </li>
-                                <li><a className="dropdown-item" href="javascript:;">Something else here</a></li>
+                                <li><a className="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </div>
                         <div className="btn-group position-static">
@@ -180,12 +183,12 @@ function IndexMusic(props) {
                                 Collection
                             </button>
                             <ul className="dropdown-menu">
-                                <li><a className="dropdown-item" href="javascript:;">Action</a></li>
-                                <li><a className="dropdown-item" href="javascript:;">Another action</a></li>
+                                <li><a className="dropdown-item" href="#">Action</a></li>
+                                <li><a className="dropdown-item" href="#">Another action</a></li>
                                 <li>
                                     <hr className="dropdown-divider"/>
                                 </li>
-                                <li><a className="dropdown-item" href="javascript:;">Something else here</a></li>
+                                <li><a className="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </div>
                     </div>
@@ -208,12 +211,13 @@ function IndexMusic(props) {
                                         <th>
                                             <input className="form-check-input" type="checkbox"/>
                                         </th>
-                                        <th>Product Name</th>
-                                        <th>Price</th>
-                                        <th>Category</th>
-                                        <th>Tags</th>
-                                        <th>Rating</th>
-                                        <th>Vendor</th>
+                                        <th>Song Name</th>
+                                        <th>Country</th>
+                                        <th>Album</th>
+                                        <th>Playlist</th>
+                                        <th>Singers</th>
+                                        <th>Views</th>
+                                        <th>Package</th>
                                         <th>Date</th>
                                         <th>Action</th>
                                     </tr>

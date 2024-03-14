@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie'
+
 var authToken = null
 var userInfo = {};
 
@@ -878,9 +880,10 @@ function getHeader_cookie2(more = {}){
     return  {...more,Cookie:authToken};  
 }
 
-function setCookie (name, token){
-    authToken = name + "=" + token
-    localStorage.setItem("cookie", authToken);
+function setCookie (name, value, path){
+    Cookies.set(name, value, {path:path});
+    localStorage.setItem("cookie", Cookies);
+    authToken = Cookies;
 }
 
 function clearData2(){
@@ -903,16 +906,16 @@ function loginAdmin(username, password) {
             }),
             headers: getHeader_cookie()
         }).then(res => res.json()).then(json => {
-            console.log("data" + json.token)
+            console.log("data" + json.data.token)
             if (json.code !== 200) {
                 throw new Error("Login failed");
             }
-            setCookie(json.name, json.token);
+            
             json.data.user.timestamp = (new Date()).getTime();
             setUserInfo(json.data.user);
-    
+            setCookie(json.data.cookie.name, json.data.cookie.value, json.data.cookie.path)
             return json.data;
-        });
+        })
     } catch (error){
         console.error("Error during login:", error);
         throw error;
@@ -959,9 +962,9 @@ function getPageMusicAll(filter){
  
     return  fetch(url,{
         method: 'GET',  
-        headers:  getHeader()
+        headers:  getHeader_cookie2()
     }).then(res => res.json()).then(json=>{
-        if (json.code != 0){
+        if (json.code != 200){
             throw "Error request"
             return;
         } 
