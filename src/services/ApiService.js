@@ -979,9 +979,9 @@ function uploadSong(data){
      return  fetch(url,{
         method: 'POST',
         mode: 'cors', 
-        body:JSON.stringify(data),
-        headers:  getHeader_cookie()
-    }).then(res => res.json()).then(async json=>{
+        body: data,
+        // headers:  getHeader_cookie()
+    }).then(res => res.json()).then( json=>{
         if (json.code !==200){
             throw "Request Failed"
             return;
