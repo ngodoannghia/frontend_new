@@ -19,7 +19,7 @@ function Customize() {
 
                     <div className="row g-3">
                         <div className="col-12 col-xl-6">
-                            <input type="radio" className="btn-check" name="theme-options" id="LightTheme" checked="" />
+                            <input type="radio" className="btn-check" name="theme-options" id="LightTheme" defaultChecked />
                             <label
                                 className="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4"
                                 htmlFor="LightTheme">

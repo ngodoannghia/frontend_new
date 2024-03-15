@@ -71,7 +71,7 @@ function IndexMusic(props) {
                 <div className="product-tags">
                     {
                         m.singers.map(s => (
-                            <a href="#" className="btn-tags">{s.name}</a>
+                            <a key={s.singer_id} href="#" className="btn-tags">{s.name}</a>
                         ))
                     }
                 </div>
@@ -143,15 +143,13 @@ function IndexMusic(props) {
                 <div className="col-auto">
                     <div className="position-relative">
                         <input className="form-control px-5" type="search" placeholder="Search Products"/>
-                            <span
-                                className="material-icons-outlined position-absolute ms-3 translate-middle-y start-0 top-50 fs-5">search</span>
+                        <span className="material-icons-outlined position-absolute ms-3 translate-middle-y start-0 top-50 fs-5">search</span>
                     </div>
                 </div>
                 <div className="col-auto flex-grow-1 overflow-auto">
                     <div className="btn-group position-static">
                         <div className="btn-group position-static">
-                            <button type="button" className="btn btn-filter dropdown-toggle px-4" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <button type="button" className="btn btn-filter dropdown-toggle px-4" data-bs-toggle="dropdown" aria-expanded="false">
                                 Category
                             </button>
                             <ul className="dropdown-menu">
@@ -164,9 +162,8 @@ function IndexMusic(props) {
                             </ul>
                         </div>
                         <div className="btn-group position-static">
-                            <button type="button" className="btn btn-filter dropdown-toggle px-4" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Vendor
+                            <button type="button" className="btn btn-filter dropdown-toggle px-4" data-bs-toggle="dropdown" aria-expanded="false">
+                                Country
                             </button>
                             <ul className="dropdown-menu">
                                 <li><a className="dropdown-item" href="#">Action</a></li>
@@ -178,9 +175,8 @@ function IndexMusic(props) {
                             </ul>
                         </div>
                         <div className="btn-group position-static">
-                            <button type="button" className="btn btn-filter dropdown-toggle px-4" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Collection
+                            <button type="button" className="btn btn-filter dropdown-toggle px-4" data-bs-toggle="dropdown" aria-expanded="false">
+                                Package
                             </button>
                             <ul className="dropdown-menu">
                                 <li><a className="dropdown-item" href="#">Action</a></li>
