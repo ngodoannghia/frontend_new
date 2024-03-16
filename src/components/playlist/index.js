@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import { baseurl } from "../config";
-import { getPageMusicAll, displayDateTime } from "../../services/ApiService"
+import { apiGetPageAllPlaylist, displayDateTime } from "../../services/ApiService"
 import { trackPromise } from 'react-promise-tracker';
 import { withRouter } from "react-router";
 
-function IndexMusic(props) {
+function IndexPlaylist(props) {
     var [datasource,setDatasource] = useState([]);
     var [pagging,setPagging] =  useState([1]);
 
@@ -17,7 +17,7 @@ function IndexMusic(props) {
 
     useEffect(()=>{
 
-        trackPromise(getPageMusicAll({...filterOption} ).then((data)=>{
+        trackPromise(apiGetPageAllPlaylist({...filterOption} ).then((data)=>{
           setDatasource(data.content);
           var totalPage = data["totalPages"];
           var pages = [];
@@ -35,7 +35,7 @@ function IndexMusic(props) {
           obj.page = 1
         }
         setExFilterOption(obj);
-        trackPromise(getPageMusicAll(obj).then((data)=>{
+        trackPromise(apiGetPageAllPlaylist(obj).then((data)=>{
               setDatasource(data.content);
               var totalPage = data["totalPages"];
               var pages = [1];
@@ -59,31 +59,12 @@ function IndexMusic(props) {
                         <img src="https://placehold.co/75x50" width="70" className="rounded-3" alt=""/>
                     </div>
                     <div className="product-info">
-                        <a href="#" className="product-title">{m.title}</a>
-                        <p className="mb-0 product-category">Category : {m.category !== null ? m.category.name : "Default"}</p>
+                        <a href="#" className="product-title">{m.name}</a>
                     </div>
                 </div>
             </td>
-            <td>{m.country !== null ? m.country.name : "Default" }</td>
-            <td>{m.album !== null ? m.album.name : "Default"}</td>
-            <td>{m.playlist !== null ? m.playlist.name : "Default"}</td>
-            <td>
-                <div className="product-tags">
-                    {
-                        m.singers.map(s => (
-                            <a key={s.singer_id} href="#" className="btn-tags">{s.name}</a>
-                        ))
-                    }
-                </div>
-            </td>
-            <td>
-                <div className="product-rating">
-                    <i className="bi bi-star-fill text-warning me-2"></i><span>{m.view !== null?m.view:0}</span>
-                </div>
-            </td>
-            <td>
-                <a href="#">{m.pack !== null ? m.pack.name : 'Normal'}</a>
-            </td>
+            <td>{m.category !== null ? m.category.name : "Default" }</td>
+            <td>{m.country !== null ? m.country.name : "Default"}</td>
             <td>
                 {displayDateTime(m.create_at)}
             </td>
@@ -192,7 +173,7 @@ function IndexMusic(props) {
                 <div className="col-auto">
                     <div className="d-flex align-items-center gap-2 justify-content-lg-end">
                         <button className="btn btn-filter px-4"><i className="bi bi-box-arrow-right me-2"></i>Export</button>
-                        <a href={baseurl + '/music/upload'}><button className="btn btn-primary px-4"><i className="bi bi-plus-lg me-2"></i>Add Song</button></a>
+                        <a href={baseurl + '/playlist/add'}><button className="btn btn-primary px-4"><i className="bi bi-plus-lg me-2"></i>Add Playlist</button></a>
                     </div>
                 </div>
             </div>
@@ -207,13 +188,9 @@ function IndexMusic(props) {
                                         <th>
                                             <input className="form-check-input" type="checkbox"/>
                                         </th>
-                                        <th>Song Name</th>
+                                        <th>Playlist Name</th>
+                                        <th>Category</th>
                                         <th>Country</th>
-                                        <th>Album</th>
-                                        <th>Playlist</th>
-                                        <th>Singers</th>
-                                        <th>Views</th>
-                                        <th>Package</th>
                                         <th>Date</th>
                                         <th>Action</th>
                                     </tr>
@@ -232,4 +209,4 @@ function IndexMusic(props) {
     );
 }
 
-export default withRouter(IndexMusic);
+export default withRouter(IndexPlaylist);

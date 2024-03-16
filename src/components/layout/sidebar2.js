@@ -38,16 +38,16 @@ function Sidebar2(props) {
                                 <div className="menu-title">Quản lý nhạc</div>
                             </a>
                             <ul className="mm-collapse">
-                                <li><a href="component-cards-basic.html"><i
+                                <li><a href={baseurl + '/category'}><i
                                     className="material-icons-outlined">arrow_right</i>Thể loại</a>
                                 </li>
-                                <li><a href="component-cards-basic.html"><i
+                                <li><a href={baseurl + '/country'}><i
                                     className="material-icons-outlined">arrow_right</i>Country</a>
                                 </li>
                                 <li><a href={baseurl + '/album'}><i
                                     className="material-icons-outlined">arrow_right</i>Album</a>
                                 </li>
-                                <li><a href="component-cards-contact.html"><i
+                                <li><a href={baseurl + '/playlist'}><i
                                     className="material-icons-outlined">arrow_right</i>Playlist</a>
                                 </li>
                                 <li><a href={baseurl + '/music'}><i

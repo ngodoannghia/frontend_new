@@ -220,6 +220,95 @@ function getPageMusicAll(filter){
         return json.data;
     });
 }
+
+function apiGetPageAllAlbum(filter){
+    var request = { 
+        page:filter.page-1,
+        limit:filter.limit  ?? 20
+    } 
+    var url = HOST + "api/album/get/bypage/"+request.page+"?limit="+request.limit+"&sortType=desc";
+
+    return  fetch(url,{
+        method: 'GET',  
+        headers:  getHeader_cookie2()
+    }).then(res => res.json()).then(json=>{
+        if (json.code != 200){
+            throw "Error request"
+            return;
+        } 
+        if (json.data == null ){
+            throw "Error request"
+        } 
+        return json.data;
+    });
+}
+
+function apiGetPageAllCategory(filter){
+    var request = { 
+        page:filter.page-1,
+        limit:filter.limit  ?? 20
+    } 
+    var url = HOST + "api/category/get/bypage/"+request.page+"?limit="+request.limit+"&sortType=desc";
+
+    return  fetch(url,{
+        method: 'GET',  
+        headers:  getHeader_cookie2()
+    }).then(res => res.json()).then(json=>{
+        if (json.code != 200){
+            throw "Error request"
+            return;
+        } 
+        if (json.data == null ){
+            throw "Error request"
+        } 
+        return json.data;
+    });
+}
+
+function apiGetPageAllCountry(filter){
+    var request = { 
+        page:filter.page-1,
+        limit:filter.limit  ?? 20
+    } 
+    var url = HOST + "api/country/get/bypage/"+request.page+"?limit="+request.limit+"&sortType=desc";
+
+    return  fetch(url,{
+        method: 'GET',  
+        headers:  getHeader_cookie2()
+    }).then(res => res.json()).then(json=>{
+        if (json.code != 200){
+            throw "Error request"
+            return;
+        } 
+        if (json.data == null ){
+            throw "Error request"
+        } 
+        return json.data;
+    });
+}
+
+function apiGetPageAllPlaylist(filter){
+    var request = { 
+        page:filter.page-1,
+        limit:filter.limit  ?? 20
+    } 
+    var url = HOST + "api/playlist/get/bypage/"+request.page+"?limit="+request.limit+"&sortType=desc";
+
+    return  fetch(url,{
+        method: 'GET',  
+        headers:  getHeader_cookie2()
+    }).then(res => res.json()).then(json=>{
+        if (json.code != 200){
+            throw "Error request"
+            return;
+        } 
+        if (json.data == null ){
+            throw "Error request"
+        } 
+        return json.data;
+    });
+}
+
 function uploadSong(data){
     var url = HOST+"api/song/upload";
      return  fetch(url,{
@@ -236,17 +325,68 @@ function uploadSong(data){
     });
 }
 
-function apiGetAllAlbum(){
-    var url = HOST + "api/album/get/all"
+function apiAddPlaylist(data){
+    var url = HOST + "api/playlist/add";
     return fetch(url, {
-        method: "GET",
-    }).then(res => res.json()).then( json => {
-        if (json.code !== 200){
-            throw new Error("Request Failed")
-        }
-        return json.data
-    })
+        method: "POST",
+        mode: "cors",
+        body: data, 
+        // headers:  getHeader_cookie()
+    }).then(res => res.json()).then( json=>{
+        if (json.code !==200){
+            throw "Request Failed"
+            return;
+        }  
+        return json.data;
+    });
 }
+
+function apiAddAlbum(data){
+    var url = HOST + "api/album/add";
+    return fetch(url, {
+        method: "POST",
+        mode: "cors",
+        body: data, 
+        // headers:  getHeader_cookie()
+    }).then(res => res.json()).then( json=>{
+        if (json.code !==200){
+            throw "Request Failed"
+            return;
+        }  
+        return json.data;
+    });
+}
+function apiAddCategory(data){
+    var url = HOST + "api/category/add";
+    return fetch(url, {
+        method: "POST",
+        mode: "cors",
+        body: data, 
+        // headers:  getHeader_cookie()
+    }).then(res => res.json()).then( json=>{
+        if (json.code !==200){
+            throw "Request Failed"
+            return;
+        }  
+        return json.data;
+    });
+}
+function apiAddCountry(data){
+    var url = HOST + "api/country/add";
+    return fetch(url, {
+        method: "POST",
+        mode: "cors",
+        body: data, 
+        // headers:  getHeader_cookie()
+    }).then(res => res.json()).then( json=>{
+        if (json.code !==200){
+            throw "Request Failed"
+            return;
+        }  
+        return json.data;
+    });
+}
+
 export  {
     setToken,
     isAuthen,
@@ -265,5 +405,12 @@ export  {
     logoutAdmin,
     getPageMusicAll,
     uploadSong,
-    apiGetAllAlbum
+    apiGetPageAllAlbum,
+    apiGetPageAllCategory,
+    apiGetPageAllCountry,
+    apiGetPageAllPlaylist,
+    apiAddPlaylist,
+    apiAddAlbum,
+    apiAddCategory,
+    apiAddCountry
 }

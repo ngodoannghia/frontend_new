@@ -1,65 +1,34 @@
 import React, {useState} from "react";
 import { withRouter } from "react-router-dom";
-import { uploadSong } from "../../services/ApiService"
+import { apiAddPlaylist } from "../../services/ApiService"
 
 
 
-function UploadMusic(props) {
-    var [fileDemo, setFileDemo] = useState(null)
-    var [fileOffical, setFileOffical] = useState(null)
-    var [fileLyric, setFileLyric] = useState(null)
-    var [title, setTitle] = useState({})
+function AddPlaylist(props) {
+    var [name, setName] = useState({})
     var [description, setDescription] = useState({})
-    var [packId, setPackId] = useState(1)
-    var [albumId, setAlbumId] = useState(1)
     var [countryId, setCountryId] = useState(1)
-    var [singersId, setSingerId] = useState(1)
     var [categorieId, setCategoryId] = useState(1)
-    var [playlistId, setPlaylistId] = useState(1)
 
     const formData = new FormData()
 
-    function onChangeDemo(event){
-        var file = event.target.files[0]
-        console.log("Vao demo")
-        setFileDemo(file)
-    }
-    function onChangeOffical(event){
-        var file = event.target.files[0]
-        console.log("Vao offical")
-        setFileOffical(file)
-    }
-    function onChangeLyric(event){
-        var file = event.target.files[0]
-        setFileLyric(file)
-    }
-
-    function handleUpload(){
-        console.log("Hand upload")
-        formData.append('file_lyric', fileLyric)
-        console.log(fileLyric)
-        formData.append('file_demo', fileDemo)
-        formData.append('file_offical', fileOffical)
-        formData.append('title', title)
+    function handleAdd(){
+        formData.append('name', name)
         formData.append('description', description)
-        formData.append('pack_id', packId)
-        formData.append('album_id', albumId)
         formData.append('country_id', countryId)
-        formData.append('playlist_id', playlistId)
         formData.append('category_id', categorieId)
-        formData.append('singer_id', singersId)
         
         try{
-            uploadSong(formData).then((data) => {
-                window.showAlert("Upload nhạc thanh công !")
-                props.history.push('/music')
+            apiAddPlaylist(formData).then((data) => {
+                window.showAlert("Tạo playlist thành công !")
+                props.history.push('/playlist')
             }).catch(e => {
-                window.showAlert("Upload nhạc thất bại")
+                window.showAlert("Tạo playlist thất bại")
                 console.log(e)
             })
         }
         catch{
-            window.showAlert("Có lỗi thông tin upload!")
+            window.showAlert("Lỗi xảy ra!")
         }
     }
 
@@ -95,25 +64,12 @@ function UploadMusic(props) {
                     <div className="card">
                         <div className="card-body">
                             <div className="mb-4">
-                                <h5 className="mb-3">Song Title</h5>
-                                <input onChange={(e)=>setTitle(e.target.value)} type="text" className="form-control" placeholder="write title here...." />
+                                <h5 className="mb-3">Playlist Name</h5>
+                                <input onChange={(e)=>setName(e.target.value)} type="text" className="form-control" placeholder="write title here...." />
                             </div>
                             <div className="mb-4">
-                                <h5 className="mb-3">Song Description</h5>
+                                <h5 className="mb-3">Playlist Description</h5>
                                 <textarea onChange={(e)=>setDescription(e.target.value)}  className="form-control" cols="4" rows="6" placeholder="write a description here.."></textarea>
-                            </div>
-                            
-                            <div className="mb-3">
-                                <h5 className="mb-3">Upload Lyris</h5>                              
-                                <input onChange={onChangeLyric} type="file" name="files" accept=".text, .doc, .docx, .txt"/>
-                            </div>
-                            <div className="mb-4">
-                                <h5 className="mb-3">Upload Song Demo</h5>
-                                <input onChange={onChangeDemo} type="file" name="files" accept=".mp3, .wav, .wma, .flac, .aac, .ogg"/>
-                            </div>
-                            <div className="mb-4">
-                                <h5 className="mb-3">Upload Song Offical</h5>
-                                <input onChange={onChangeOffical} type="file" name="files" accept=".mp3, .wav, .wma, .flac, .aac, .ogg"/>
                             </div>
                         </div>
                     </div>
@@ -133,14 +89,6 @@ function UploadMusic(props) {
                             <h5 className="mb-3">Organize</h5>
                             <div className="row g-3">
                                 <div className="col-12">
-                                    <label htmlFor="AddPackage" className="form-label">Package</label>
-                                    <select onChange={(e)=>setPackId(e.target.value)} className="form-select" id="AddPackage">
-                                        <option value="1">Normal</option>
-                                        <option value="2">Vip</option>
-                                        <option value="3">Super Vip</option>
-                                    </select>
-                                </div>
-                                <div className="col-12">
                                     <label htmlFor="Country" className="form-label">Country</label>
                                     <select onChange={(e)=>setCountryId(e.target.value)} className="form-select" id="Country">
                                         <option value="1">Nhạc Việt</option>
@@ -158,31 +106,6 @@ function UploadMusic(props) {
                                         <option value="4">Remix</option>
                                     </select>
                                 </div>
-                                <div className="col-12">
-                                    <label htmlFor="Album" className="form-label">Album</label>
-                                    <select onChange={(e)=>setAlbumId(e.target.value)} className="form-select" id="Album">
-                                        <option value="1">Album dân ca Lưu Ánh Loan</option>
-                                        <option value="2">Album Khắc Việt remix</option>
-                                    </select>
-                                </div>
-                                <div className="col-12">
-                                    <label htmlFor="Playlist" className="form-label">Playlist</label>
-                                    <select onChange={(e)=>setPlaylistId(e.target.value)} className="form-select" id="Playlist">
-                                        <option value="1">Nhạc chill học tập</option>
-                                        <option value="2">Nhạc không lời</option>
-                                        <option value="3">Nhạc lofi</option>
-                                        <option value="4">Nhạc yêu đời</option>
-                                    </select>
-                                </div>
-                                <div className="col-12">
-                                    <label htmlFor="multiple-select-field" className="form-label">Singer</label>
-                                    <select onChange={(e)=>setSingerId(e.target.value)} className="form-select" id="multiple-select-field" data-placeholder="Select singers" multiple>
-                                        <option value="1">Mỹ Tâm</option>
-                                        <option value="2">Đức Phúc</option>
-                                        <option value="3">Bùi Anh Tuấn</option>
-                                        <option value="4">Binz</option>
-									</select>
-								</div>
                             </div>
                         </div>
                     </div>
@@ -192,7 +115,7 @@ function UploadMusic(props) {
                             <div className="row g-3">
                                 <div className="col-12">
                                     <div className="d-grid">
-                                        <button onClick={handleUpload} type="button" className="btn btn-primary">Submit</button>
+                                        <button onClick={handleAdd} type="button" className="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
                             </div>
@@ -207,4 +130,4 @@ function UploadMusic(props) {
 
     );
 }
-export default withRouter(UploadMusic);
+export default withRouter(AddPlaylist);
