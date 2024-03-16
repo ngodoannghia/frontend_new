@@ -6,6 +6,7 @@ import PackService from './packService';
 import UploadMusic from './music/upload';
 import IndexMusic  from './music';
 import Page404 from './page/page404';
+import IndexAlbum from './album';
 
 import * as ApiService from "../services/ApiService"
 import {baseurl} from "./config"
@@ -39,6 +40,12 @@ const routers = [
         id:4,
         path: baseurl + "/music/upload",
         component: UploadMusic,
+        markEnd: 0
+    },
+    {
+        id:5,
+        path: baseurl + "/album",
+        component: IndexAlbum,
         markEnd: 0
     },
     {

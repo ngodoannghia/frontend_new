@@ -44,7 +44,7 @@ function Sidebar2(props) {
                                 <li><a href="component-cards-basic.html"><i
                                     className="material-icons-outlined">arrow_right</i>Country</a>
                                 </li>
-                                <li><a href="component-cards-advance.html"><i
+                                <li><a href={baseurl + '/album'}><i
                                     className="material-icons-outlined">arrow_right</i>Album</a>
                                 </li>
                                 <li><a href="component-cards-contact.html"><i
