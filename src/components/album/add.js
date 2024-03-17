@@ -1,27 +1,37 @@
 import React, {useState} from "react";
 import { withRouter } from "react-router-dom";
 import { apiAddAlbum } from "../../services/ApiService"
-
+import Select from 'react-select'
 
 
 function AddAlbum(props) {
     var [name, setName] = useState({})
     var [description, setDescription] = useState({})
     var [countryId, setCountryId] = useState(1)
-    var [singersId, setSingerId] = useState([1])
+    var [singersId, setSingerId] = useState({})
     var [categorieId, setCategoryId] = useState(1)
 
     const formData = new FormData()
 
-    function handleAdd(){
+    const handleSelectChange = (selectedOptions) => {
+        setSingerId(selectedOptions);
+      };
+    const options = [
+        { value: '1', label: 'Mỹ Tâm' },
+        { value: '2', label: 'Đức Phúc' },
+    ]
+
+    const handleAdd = (event) => {
+        event.preventDefault();
+
         formData.append('name', name)
         formData.append('description', description)
         formData.append('country_id', countryId)
         formData.append('category_id', categorieId)
 
-        
-        formData.append("singer_id", singersId);
-       
+        singersId.forEach((singer, index) => {
+            formData.append('singer_id', singer.value);
+        });
         
         try{
             apiAddAlbum(formData).then((data) => {
@@ -113,12 +123,14 @@ function AddAlbum(props) {
                                 </div>
                                 <div className="col-12">
                                     <label htmlFor="multiple-select-field" className="form-label">Singer</label>
-                                    <select onChange={(e) => setSingerId(e.target.value)} className="form-select" id="multiple-select-field" data-placeholder="Select singers" multiple>
-                                        <option value="1">Mỹ Tâm</option>
-                                        <option value="2">Đức Phúc</option>
-                                        <option value="3">Bùi Anh Tuấn</option>
-                                        <option value="4">Binz</option>
-									</select>
+                                    <Select
+                                        isMulti
+                                        name="singer"
+                                        options={options}
+                                        className="basic-multi-select"
+                                        classNamePrefix="select"
+                                        onChange={handleSelectChange}
+                                    />
 								</div>
                             </div>
                         </div>

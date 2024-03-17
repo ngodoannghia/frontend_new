@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { withRouter } from "react-router-dom";
 import { uploadSong } from "../../services/ApiService"
-
+import Select from 'react-select'
 
 
 function UploadMusic(props) {
@@ -19,6 +19,13 @@ function UploadMusic(props) {
 
     const formData = new FormData()
 
+    const options = [
+        { value: '1', label: 'Mỹ Tâm' },
+        { value: '2', label: 'Đức Phúc' },
+    ]
+    const handleSelectChange = (selectedOptions) => {
+        setSingerId(selectedOptions);
+    };
     function onChangeDemo(event){
         var file = event.target.files[0]
         console.log("Vao demo")
@@ -47,7 +54,9 @@ function UploadMusic(props) {
         formData.append('country_id', countryId)
         formData.append('playlist_id', playlistId)
         formData.append('category_id', categorieId)
-        formData.append('singer_id', singersId)
+        singersId.forEach((singer, index) => {
+            formData.append('singer_id', singer.value);
+        });
         
         try{
             uploadSong(formData).then((data) => {
@@ -176,12 +185,14 @@ function UploadMusic(props) {
                                 </div>
                                 <div className="col-12">
                                     <label htmlFor="multiple-select-field" className="form-label">Singer</label>
-                                    <select onChange={(e)=>setSingerId(e.target.value)} className="form-select" id="multiple-select-field" data-placeholder="Select singers" multiple>
-                                        <option value="1">Mỹ Tâm</option>
-                                        <option value="2">Đức Phúc</option>
-                                        <option value="3">Bùi Anh Tuấn</option>
-                                        <option value="4">Binz</option>
-									</select>
+                                    <Select
+                                        isMulti
+                                        name="colors"
+                                        options={options}
+                                        className="basic-multi-select"
+                                        classNamePrefix="select"
+                                        onChange={handleSelectChange}
+                                    />
 								</div>
                             </div>
                         </div>
