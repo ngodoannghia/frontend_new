@@ -442,6 +442,27 @@ function apiGetAllSinger(){
     })
 }
 
+function apiGetPageAllUser(filter){
+    var request = { 
+        page:filter.page-1,
+        limit:filter.limit  ?? 20
+    } 
+    var url = HOST + "api/user/get/bypage/"+request.page+"?limit="+request.limit+"&sortType=desc";
+
+    return  fetch(url,{
+        method: 'GET',  
+        headers:  getHeader_cookie2()
+    }).then(res => res.json()).then(json=>{
+        if (json.code != 200){
+            throw "Error request"
+            return;
+        } 
+        if (json.data == null ){
+            throw "Error request"
+        } 
+        return json.data;
+    });
+}
 export  {
     setToken,
     isAuthen,
@@ -472,5 +493,6 @@ export  {
     apiGetAllCategory,
     apiGetAllPlaylist,
     apiGetAllCountry,
-    apiGetAllSinger
+    apiGetAllSinger,
+    apiGetPageAllUser
 }

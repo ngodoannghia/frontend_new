@@ -14,6 +14,7 @@ import AddPlaylist from './playlist/add'
 import AddCategory from './category/add'
 import AddCountry from './country/add'
 import AddAlbum from './album/add'
+import IndexUser from './user'
 
 import * as ApiService from "../services/ApiService"
 import {baseurl} from "./config"
@@ -95,6 +96,12 @@ const routers = [
         id:13,
         path: baseurl + "/album/add",
         component: AddAlbum,
+        markEnd: 0
+    },
+    {
+        id:14,
+        path: baseurl + "/user",
+        component: IndexUser,
         markEnd: 0
     },
     {

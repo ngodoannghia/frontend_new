@@ -62,7 +62,7 @@ function Sidebar2(props) {
                                 <div className="menu-title">Quản lý user</div>
                             </a>
                             <ul className="mm-collapse">
-                                <li><a href="ecommerce-add-product.html"><i
+                                <li><a href={baseurl + '/user'}><i
                                     className="material-icons-outlined">arrow_right</i>Quản lý khách hàng</a>
                                 </li>
                                 <li><a href="ecommerce-products.html"><i
