@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { withRouter } from "react-router-dom";
-import { uploadSong } from "../../services/ApiService"
+import { uploadSong, apiGetAllCountry, apiGetAllSinger, apiGetAllCategory, apiGetAllPlaylist, apiGetAllAlbum } from "../../services/ApiService"
 import Select from 'react-select'
 
 
@@ -17,15 +17,72 @@ function UploadMusic(props) {
     var [categorieId, setCategoryId] = useState(1)
     var [playlistId, setPlaylistId] = useState(1)
 
-    const formData = new FormData()
+    var [optionSinger, setOptionSinger] = useState([])
+    var [optionsCategory, setOptionCategory] = useState({})
+    var [optionsCountry, setOptionCountry] = useState({})
+    var [optionAlbum, setOptionAlbum] = useState({})
+    var [optionPlaylist, setOptionPlaylist] = useState({})
 
-    const options = [
-        { value: '1', label: 'Mỹ Tâm' },
-        { value: '2', label: 'Đức Phúc' },
-    ]
-    const handleSelectChange = (selectedOptions) => {
+    const handleSingerChange = (selectedOptions) => {
         setSingerId(selectedOptions);
     };
+
+    const handleCategoryChange = (selectedOptions) => {
+        setCategoryId(selectedOptions.value);
+        // Do something with the selected value
+    };
+    const handleCountryChange = (selectedOptions) => {
+        setCountryId(selectedOptions.value);
+        // Do something with the selected value
+    };
+    const handleAlbumChange = (selectedOptions) => {
+        setAlbumId(selectedOptions.value);
+    }
+    const handlePlaylistChange = (selectedOptions) => {
+        setPlaylistId(selectedOptions.value);
+    }
+
+    useEffect(()=>{
+        var tmpCategory = []
+        var tmpCountry = []
+        var tmpSinger = []
+        var tmpPlaylist = []
+        var tmpAlbum = []
+
+        apiGetAllCategory().then((data) => {
+            data.forEach(item => {
+                tmpCategory.push({value: item.category_id, label: item.name})
+            })
+        })
+        apiGetAllCountry().then((data) => {
+            data.forEach(item => {
+                tmpCountry.push({value: item.country_id, label: item.name})
+            })
+        })
+        apiGetAllSinger().then((data) => {
+            data.forEach(item => {
+                tmpSinger.push({value: item.singer_id, label: item.name})
+            })
+        })
+        apiGetAllPlaylist().then((data) => {
+            data.forEach(item => {
+                tmpPlaylist.push({value: item.playlist_id, label: item.name})
+            })
+        })
+        apiGetAllAlbum().then((data) => {
+            data.forEach(item => {
+                tmpAlbum.push({value: item.album_id, label: item.name})
+            })
+        })
+        setOptionCategory(tmpCategory)
+        setOptionCountry(tmpCountry)
+        setOptionSinger(tmpSinger)
+        setOptionAlbum(tmpAlbum)
+        setOptionPlaylist(tmpPlaylist)
+    }, [])
+
+    const formData = new FormData()
+
     function onChangeDemo(event){
         var file = event.target.files[0]
         console.log("Vao demo")
@@ -151,47 +208,57 @@ function UploadMusic(props) {
                                 </div>
                                 <div className="col-12">
                                     <label htmlFor="Country" className="form-label">Country</label>
-                                    <select onChange={(e)=>setCountryId(e.target.value)} className="form-select" id="Country">
-                                        <option value="1">Nhạc Việt</option>
-                                        <option value="2">Nhạc Âu Mỹ</option>
-                                        <option value="3">Nhạc Hàn</option>
-                                        <option value="4">Nhạc Hoa</option>
-                                    </select>
+                                    <Select
+                                        className="basic-single"
+                                        classNamePrefix="select"
+                                        defaultValue={optionsCountry[0]}
+                                        name="color"
+                                        options={optionsCountry}
+                                        onChange={handleCountryChange}
+                                    />
                                 </div>
                                 <div className="col-12">
                                     <label htmlFor="Category" className="form-label">Category</label>
-                                    <select onChange={(e)=>setCategoryId(e.target.value)} className="form-select" id="Category">
-                                        <option value="1">Trữ Tình & Bolero</option>
-                                        <option value="2">Nhạc Thiếu Nhi</option>
-                                        <option value="3">Nhạc Phim</option>
-                                        <option value="4">Remix</option>
-                                    </select>
+                                    <Select
+                                        className="basic-single"
+                                        classNamePrefix="select"
+                                        defaultValue={optionsCategory[0]}
+                                        name="color"
+                                        options={optionsCategory}
+                                        onChange={handleCategoryChange}
+                                    />
                                 </div>
                                 <div className="col-12">
                                     <label htmlFor="Album" className="form-label">Album</label>
-                                    <select onChange={(e)=>setAlbumId(e.target.value)} className="form-select" id="Album">
-                                        <option value="1">Album dân ca Lưu Ánh Loan</option>
-                                        <option value="2">Album Khắc Việt remix</option>
-                                    </select>
+                                    <Select
+                                        className="basic-single"
+                                        classNamePrefix="select"
+                                        defaultValue={optionAlbum[0]}
+                                        name="color"
+                                        options={optionAlbum}
+                                        onChange={handleAlbumChange}
+                                    />
                                 </div>
                                 <div className="col-12">
                                     <label htmlFor="Playlist" className="form-label">Playlist</label>
-                                    <select onChange={(e)=>setPlaylistId(e.target.value)} className="form-select" id="Playlist">
-                                        <option value="1">Nhạc chill học tập</option>
-                                        <option value="2">Nhạc không lời</option>
-                                        <option value="3">Nhạc lofi</option>
-                                        <option value="4">Nhạc yêu đời</option>
-                                    </select>
+                                    <Select
+                                        className="basic-single"
+                                        classNamePrefix="select"
+                                        defaultValue={optionPlaylist[0]}
+                                        name="color"
+                                        options={optionPlaylist}
+                                        onChange={handlePlaylistChange}
+                                    />
                                 </div>
                                 <div className="col-12">
                                     <label htmlFor="multiple-select-field" className="form-label">Singer</label>
                                     <Select
                                         isMulti
                                         name="colors"
-                                        options={options}
+                                        options={optionSinger}
                                         className="basic-multi-select"
                                         classNamePrefix="select"
-                                        onChange={handleSelectChange}
+                                        onChange={handleSingerChange}
                                     />
 								</div>
                             </div>

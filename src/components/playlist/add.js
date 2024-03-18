@@ -1,6 +1,7 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { withRouter } from "react-router-dom";
-import { apiAddPlaylist } from "../../services/ApiService"
+import { apiAddPlaylist, apiGetAllCategory, apiGetAllCountry } from "../../services/ApiService"
+import Select from 'react-select'
 
 
 
@@ -10,6 +11,38 @@ function AddPlaylist(props) {
     var [countryId, setCountryId] = useState(1)
     var [categorieId, setCategoryId] = useState(1)
 
+    var [optionsCategory, setOptionCategory] = useState({})
+    var [optionsCountry, setOptionCountry] = useState({})
+
+    const handleCategoryChange = (selectedOptions) => {
+        setCategoryId(selectedOptions.value);
+        // Do something with the selected value
+    };
+    const handleCountryChange = (selectedOptions) => {
+        setCountryId(selectedOptions.value);
+        // Do something with the selected value
+    };
+
+    useEffect(()=>{
+        var tmpCategory = []
+        var tmpCountry = []
+        var tmpSinger = []
+
+        apiGetAllCategory().then((data) => {
+            data.forEach(item => {
+                tmpCategory.push({value: item.category_id, label: item.name})
+            })
+        })
+        apiGetAllCountry().then((data) => {
+            data.forEach(item => {
+                tmpCountry.push({value: item.country_id, label: item.name})
+            })
+        })
+
+        setOptionCategory(tmpCategory)
+        setOptionCountry(tmpCountry)
+
+    }, [])
     const formData = new FormData()
 
     function handleAdd(){
@@ -90,21 +123,25 @@ function AddPlaylist(props) {
                             <div className="row g-3">
                                 <div className="col-12">
                                     <label htmlFor="Country" className="form-label">Country</label>
-                                    <select onChange={(e)=>setCountryId(e.target.value)} className="form-select" id="Country">
-                                        <option value="1">Nhạc Việt</option>
-                                        <option value="2">Nhạc Âu Mỹ</option>
-                                        <option value="3">Nhạc Hàn</option>
-                                        <option value="4">Nhạc Hoa</option>
-                                    </select>
+                                    <Select
+                                        className="basic-single"
+                                        classNamePrefix="select"
+                                        defaultValue={optionsCountry[0]}
+                                        name="color"
+                                        options={optionsCountry}
+                                        onChange={handleCountryChange}
+                                    />
                                 </div>
                                 <div className="col-12">
                                     <label htmlFor="Category" className="form-label">Category</label>
-                                    <select onChange={(e)=>setCategoryId(e.target.value)} className="form-select" id="Category">
-                                        <option value="1">Trữ Tình & Bolero</option>
-                                        <option value="2">Nhạc Thiếu Nhi</option>
-                                        <option value="3">Nhạc Phim</option>
-                                        <option value="4">Remix</option>
-                                    </select>
+                                    <Select
+                                        className="basic-single"
+                                        classNamePrefix="select"
+                                        defaultValue={optionsCategory[0]}
+                                        name="color"
+                                        options={optionsCategory}
+                                        onChange={handleCategoryChange}
+                                    />
                                 </div>
                             </div>
                         </div>

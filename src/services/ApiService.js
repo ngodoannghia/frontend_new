@@ -386,6 +386,61 @@ function apiAddCountry(data){
         return json.data;
     });
 }
+function apiGetAllAlbum(){
+    var url = HOST + "api/album/get/all";
+    return fetch(url, {
+        method: "GET",
+    }).then(res => res.json()).then( json => {
+        if (json.code !== 200){
+            throw new Error("Request Faile")
+        }
+        return json.data
+    })
+}
+function apiGetAllCategory(){
+    var url = HOST + "api/category/get/all";
+    return fetch(url, {
+        method: "GET",
+    }).then(res => res.json()).then( json => {
+        if (json.code !== 200){
+            throw new Error("Request Faile")
+        }
+        return json.data
+    })
+}
+function apiGetAllCountry(){
+    var url = HOST + "api/country/get/all";
+    return fetch(url, {
+        method: "GET",
+    }).then(res => res.json()).then( json => {
+        if (json.code !== 200){
+            throw new Error("Request Faile")
+        }
+        return json.data
+    })
+}
+function apiGetAllPlaylist(){
+    var url = HOST + "api/playlist/get/all";
+    return fetch(url, {
+        method: "GET",
+    }).then(res => res.json()).then( json => {
+        if (json.code !== 200){
+            throw new Error("Request Faile")
+        }
+        return json.data
+    })
+}
+function apiGetAllSinger(){
+    var url = HOST + "api/singer/get/all";
+    return fetch(url, {
+        method: "GET",
+    }).then(res => res.json()).then( json => {
+        if (json.code !== 200){
+            throw new Error("Request Faile")
+        }
+        return json.data
+    })
+}
 
 export  {
     setToken,
@@ -412,5 +467,10 @@ export  {
     apiAddPlaylist,
     apiAddAlbum,
     apiAddCategory,
-    apiAddCountry
+    apiAddCountry,
+    apiGetAllAlbum,
+    apiGetAllCategory,
+    apiGetAllPlaylist,
+    apiGetAllCountry,
+    apiGetAllSinger
 }
